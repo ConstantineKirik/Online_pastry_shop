@@ -25,6 +25,6 @@ public class DeliveryAddress {
     @Column
     private String apartment;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "orders_id")
+    @JoinColumn(name = "order_id")
     private List<Order> orders;
 }

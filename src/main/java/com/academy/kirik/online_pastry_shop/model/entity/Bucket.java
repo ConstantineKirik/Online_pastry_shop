@@ -24,8 +24,8 @@ public class Bucket {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "products_buckets",
-            joinColumns = {@JoinColumn(name = "buckets_id")},
-            inverseJoinColumns = {@JoinColumn(name = "products_id")}
+            joinColumns = {@JoinColumn(name = "bucket_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")}
     )
     private List<Product> products;
     @Column

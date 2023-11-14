@@ -7,9 +7,7 @@ import java.util.List;
 
 public interface UserService extends UserDetailsService {
 
+    boolean save(User user);
+
     User findByUsername(String username);
-
-    boolean save(String username, String password, Long mobileNumber, String email);
-
-    List<User> getAll();
 }

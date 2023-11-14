@@ -1,34 +1,27 @@
-<%@include file="common/header.jsp"%>>
-<div>
-    <form action="/registration">
+<%@include file="common/header.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
+
+    <c:url value="/registration" var="registration"/>
+    <sf:form method="post" action="${registration}" modelAttribute="registrationUser">
+
         <h2>Регистрация</h2>
 
-            <label>Enter username: </label><br>
-            <input type="text" name="username"><br>
-            <errors path="username"></errors>
-                ${usernameError}
-            <br>
+        <sf:input type="text" path="username" placeholder="Username"></sf:input><br>
+        <sf:errors path="username"></sf:errors>
+        ${usernameError}<br>
 
-            <label>Enter password: </label><br>
-            <input type="password" name="password"><br>
-            <br>
+        <sf:input type="password" path="password" placeholder="Password"></sf:input><br><br>
 
-            <label>Confirm your password: </label><br>
-            <input type="password" name="confirmPassword"><br>
-            <errors path="password"></errors>
-                ${passwordError}
-            <br>
+        <sf:input type="password" path="confirmPassword" placeholder="Confirm your password"></sf:input><br>
+        <sf:errors path="password"></sf:errors>
+        ${passwordError}<br>
 
-            <label>Enter mobile number: </label><br>
-            <input type="text" name="mobileNumber"><br>
-            <br>
+        <sf:input type="text" path="mobileNumber" placeholder="Mobile number"></sf:input><br><br>
 
-            <label>Enter email: </label><br>
-            <input type="text" name="email"><br>
-            <br>
+        <sf:input type="text" path="email" placeholder="Email"></sf:input><br><br>
 
-            <input type="submit" value="Зарегистрироваться">
-    </form>
+        <input type="submit" value="Зарегистрироваться">
 
-</div>
-<%@include file="common/footer.jsp"%>>
+    </sf:form>
+
+<%@include file="common/footer.jsp" %>

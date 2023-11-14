@@ -8,4 +8,8 @@ public interface CategoryService {
     List<Category> getAll();
 
     Category getByTitle(String title);
+
+    boolean save(Category category);
+
+    void deleteByTitle(String title);
 }

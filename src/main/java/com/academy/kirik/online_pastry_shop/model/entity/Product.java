@@ -20,7 +20,7 @@ public class Product {
     private Integer id;
     @Column
     private String title;
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne (cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "category_id")
     private Category category;
     @Column
@@ -30,15 +30,15 @@ public class Product {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "products_orders",
-            joinColumns = {@JoinColumn(name = "products_id")},
-            inverseJoinColumns = {@JoinColumn(name = "orders_id")}
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "order_id")}
     )
     private List<Order> orders;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "products_buckets",
-            joinColumns = {@JoinColumn(name = "products_id")},
-            inverseJoinColumns = {@JoinColumn(name = "buckets_id")}
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "bucket_id")}
     )
     private List<Bucket> buckets;
 }
