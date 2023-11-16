@@ -8,11 +8,13 @@ import java.util.List;
 
 public interface ProductService {
 
-    List<Product> findAllByCategory_Title(String categoryTitle);
+    boolean save(ProductDTO productDTO);
 
     Product getByTitle(String title);
 
-    boolean save(ProductDTO productDTO);
+    List<Product> findAllByCategory_Title(String categoryTitle);
 
-    void deleteByTitle(String title);
+    void deleteById(Integer id);
+
+    void addToUserBucket(Integer productId, String username);
 }

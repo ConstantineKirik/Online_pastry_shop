@@ -7,7 +7,7 @@
 
     <a href="<c:url value="/category?title=${category.title}"/>">${category.title}</a>
     -----
-    <a href="<c:url value="/deleteCategory?title=${category.title}"/>">Удалить ${category.title}</a><br>
+    <a href="<c:url value="/deleteCategory?id=${category.id}"/>">Удалить ${category.title}</a><br>
 
 </c:forEach>
 
@@ -15,5 +15,6 @@
     <button type="submit">Добавить категорию</button>
 </form>
 
+<a href="<c:url value="/bucket"/>">Корзина</a>
 
 <%@include file="common/footer.jsp"%>

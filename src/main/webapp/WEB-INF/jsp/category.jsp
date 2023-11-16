@@ -4,11 +4,13 @@
 <br>
 
 ${category.title}
-<c:forEach items="${category.products}" var="cake">
+<c:forEach items="${category.products}" var="product">
 
-    ${cake.title} - ${cake.price} - <button>Добавить в корзину</button> -
+    ${product.title} - ${product.price} -
 
-    <a href="<c:url value="/deleteProduct?title=${cake.title}"/>">Удалить ${cake.title}</a><br>
+    <a href="<c:url value="/addBucket?id=${product.id}"/>">Добавить в корзину</a>
+
+    <a href="<c:url value="/deleteProduct?id=${product.id}"/>">Удалить ${product.title}</a><br>
 
 </c:forEach>
 

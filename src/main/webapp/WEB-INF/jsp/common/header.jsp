@@ -11,15 +11,8 @@
 
 <div class="title">Sweet Oblivion</div>
 
-<ul class="menu">
 
-    <li><a href="/login">Войти</a></li>
-    <li><a href="/logout">Выйти</a></li>
 
-</ul>
-
-<a href="/">Главная</a>
-<a href="/categories">Каталог</a>
 
 
 

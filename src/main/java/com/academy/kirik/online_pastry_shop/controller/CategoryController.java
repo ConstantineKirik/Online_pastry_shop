@@ -1,7 +1,6 @@
 package com.academy.kirik.online_pastry_shop.controller;
 
 import com.academy.kirik.online_pastry_shop.model.entity.Category;
-import com.academy.kirik.online_pastry_shop.model.entity.User;
 import com.academy.kirik.online_pastry_shop.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,14 +18,14 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping("/categories")
-    public String getAll(Model model){
+    public String getAllCategory(Model model){
         List<Category> categories = categoryService.getAll();
         model.addAttribute("categories", categories);
         return "categories";
     }
 
     @GetMapping("/category")
-    public String get(@RequestParam String title, Model model){
+    public String getCategory(@RequestParam String title, Model model){
         Category category = categoryService.getByTitle(title);
         model.addAttribute("category", category);
         return "category";
@@ -53,11 +52,8 @@ public class CategoryController {
     }
 
     @GetMapping("/deleteCategory")
-    public String deleteCategory(@RequestParam String title, Model model){
-        categoryService.deleteByTitle(title);
-
-        List<Category> categories = categoryService.getAll();
-        model.addAttribute("categories", categories);
-        return "categories";
+    public String deleteCategory(@RequestParam Integer id, Model model){
+        categoryService.deleteById(id);
+        return "redirect:/categories";
     }
 }

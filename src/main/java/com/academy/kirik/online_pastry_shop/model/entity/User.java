@@ -1,7 +1,7 @@
 package com.academy.kirik.online_pastry_shop.model.entity;
 
-import com.academy.kirik.online_pastry_shop.model.entity.enums.Role;
-import com.academy.kirik.online_pastry_shop.model.entity.enums.UserStatus;
+import com.academy.kirik.online_pastry_shop.enums.Role;
+import com.academy.kirik.online_pastry_shop.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,8 +29,6 @@ public class User implements UserDetails{
     private String username;
     @Column
     private String password;
-    @Transient
-    private String confirmPassword;
     @Enumerated(EnumType.STRING)
     private Role role;
     @Column(name = "mobile_number")

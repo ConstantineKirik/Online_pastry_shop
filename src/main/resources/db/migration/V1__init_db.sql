@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS buckets
 (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT REFERENCES users (id),
-    amount DECIMAL(4,2) NOT NULL
+    amount DECIMAL(4,2)
     );
 
 CREATE TABLE IF NOT EXISTS orders

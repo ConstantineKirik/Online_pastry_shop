@@ -3,8 +3,8 @@
 
 <h2>Вход в систему</h2>
 
-<c:url value="/loginPage" var="loginPage"/>
-<sf:form mehtod="post" action="${loginPage}" >
+<c:url value="/login" var="login"/>
+<sf:form mehtod="post" action="${login}" >
 
     <p>
         <label>

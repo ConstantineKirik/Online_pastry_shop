@@ -1,8 +1,8 @@
 package com.academy.kirik.online_pastry_shop.controller;
 
 import com.academy.kirik.online_pastry_shop.dto.ProductDTO;
-import com.academy.kirik.online_pastry_shop.model.entity.Category;
 import com.academy.kirik.online_pastry_shop.model.entity.Product;
+import com.academy.kirik.online_pastry_shop.model.entity.User;
 import com.academy.kirik.online_pastry_shop.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -20,7 +21,7 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/addProduct")
-    public String addCategory(Model model) {
+    public String addProduct(Model model) {
         model.addAttribute("addProduct", new ProductDTO());
         return "createProduct";
     }
@@ -33,18 +34,12 @@ public class ProductController {
             return "createProduct";
         }
 
-        List<Product> products = productService.findAllByCategory_Title(productDTO.getCategory());
-        model.addAttribute("products", products);
-
-        return "categories";
+        return "redirect:/categories";
     }
 
     @GetMapping("/deleteProduct")
-    public String deleteProduct(@RequestParam String title, Model model){
-
-        productService.deleteByTitle(title);
-
-
+    public String deleteProduct(@RequestParam Integer id){
+        productService.deleteById(id);
         return "categories";
     }
 }

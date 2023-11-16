@@ -1,9 +1,6 @@
 package com.academy.kirik.online_pastry_shop.service.impl;
 
 import com.academy.kirik.online_pastry_shop.model.entity.Category;
-import com.academy.kirik.online_pastry_shop.model.entity.User;
-import com.academy.kirik.online_pastry_shop.model.entity.enums.Role;
-import com.academy.kirik.online_pastry_shop.model.entity.enums.UserStatus;
 import com.academy.kirik.online_pastry_shop.model.repository.CategoryRepository;
 import com.academy.kirik.online_pastry_shop.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Transactional
-    public void deleteByTitle(String title) {
-        categoryRepository.deleteCategoryByTitle(title);
+    public void deleteById(Integer id) {
+        categoryRepository.deleteById(id);
     }
 }

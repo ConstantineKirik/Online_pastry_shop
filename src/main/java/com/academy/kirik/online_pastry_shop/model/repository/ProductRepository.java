@@ -7,9 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
+
     Product findByTitle(String title);
 
     List<Product> findAllByCategory_Title(String categoryTitle);
-
-    void deleteProductByTitle(String title);
 }

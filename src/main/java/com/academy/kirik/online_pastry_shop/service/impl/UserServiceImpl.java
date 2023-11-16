@@ -1,18 +1,17 @@
 package com.academy.kirik.online_pastry_shop.service.impl;
 
+import com.academy.kirik.online_pastry_shop.dto.UserDTO;
+import com.academy.kirik.online_pastry_shop.model.entity.Bucket;
 import com.academy.kirik.online_pastry_shop.model.entity.User;
-import com.academy.kirik.online_pastry_shop.model.entity.enums.Role;
-import com.academy.kirik.online_pastry_shop.model.entity.enums.UserStatus;
+import com.academy.kirik.online_pastry_shop.enums.Role;
+import com.academy.kirik.online_pastry_shop.enums.UserStatus;
 import com.academy.kirik.online_pastry_shop.model.repository.UserRepository;
 import com.academy.kirik.online_pastry_shop.service.UserService;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 
 @Service
@@ -22,24 +21,29 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public boolean save(User user) {
+    public boolean save(UserDTO userDTO) {
 
-        User userFromDB = userRepository.findByUsername(user.getUsername());
+        User userFromDB = userRepository.findByUsername(userDTO.getUsername());
         if (userFromDB != null) {
             return false;
         }
 
-        User newUser = User.builder()
-                .username(user.getUsername())
-                .password(passwordEncoder.encode(user.getPassword()))
+        User user = User.builder()
+                .username(userDTO.getUsername())
+                .password(passwordEncoder.encode(userDTO.getPassword()))
                 .role(Role.CLIENT)
-                .mobileNumber(user.getMobileNumber())
-                .email(user.getEmail())
+                .mobileNumber(userDTO.getMobileNumber())
+                .email(userDTO.getEmail())
                 .status(UserStatus.BASIC)
                 .build();
 
-        userRepository.save(newUser);
+        userRepository.save(user);
         return true;
+    }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
     }
 
     @Override

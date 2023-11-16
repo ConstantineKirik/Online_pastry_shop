@@ -5,11 +5,12 @@ import com.academy.kirik.online_pastry_shop.model.entity.Category;
 import java.util.List;
 
 public interface CategoryService {
-    List<Category> getAll();
-
-    Category getByTitle(String title);
 
     boolean save(Category category);
 
-    void deleteByTitle(String title);
+    Category getByTitle(String title);
+
+    List<Category> getAll();
+
+    void deleteById(Integer id);
 }
