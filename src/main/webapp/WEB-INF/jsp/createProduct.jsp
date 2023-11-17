@@ -5,7 +5,7 @@
 <c:url value="/createProduct" var="createProduct"/>
 <sf:form method="post" action="${createProduct}" modelAttribute="addProduct">
 
-    <h2>Добавление пироженки</h2>
+    <h2>Добавление продукта</h2>
 
     <sf:input type="text" path="title" placeholder="Название пироженки"></sf:input><br>
     <sf:errors path="title"></sf:errors>

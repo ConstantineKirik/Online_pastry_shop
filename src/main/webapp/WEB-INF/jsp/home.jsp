@@ -3,11 +3,11 @@
 
 <h3>Привет ${pageContext.request.userPrincipal.name}</h3>
 
-<a href="/">Главная</a>
-<a href="/categories">Каталог</a>
-<a href="/categories">Заказы</a>
-<a href="<c:url value="/bucket?username=${pageContext.request.userPrincipal.name}"/>">Корзина</a>
+<a href="<c:url value="/"/>">Главная</a>
+<a href="<c:url value="/categories"/>">Каталог</a>
+<a href="<c:url value="#"/>">Заказы</a>
+<a href="<c:url value="/bucket"/>">Корзина</a>
 
-<a href="/logout">Выйти</a>
+<a href="<c:url value="/logout"/>">Выйти</a>
 
 <%@include file="common/footer.jsp"%>

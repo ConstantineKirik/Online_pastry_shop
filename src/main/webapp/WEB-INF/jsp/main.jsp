@@ -2,9 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 
 
-<a href="/">Главная</a>
-<a href="/categories">Каталог</a>
-<a href="/login">Войти</a>
+<a href="<c:url value="/categories"/>">Каталог</a>
+<a href="<c:url value="/login"/>">Войти</a>
 
 
 

@@ -39,10 +39,10 @@ public class AuthController {
             return "registration";
         }
 
-        return "/login";
+        return "login";
     }
 
-    @GetMapping(value = "/permitlogout")
+    @GetMapping(value = "/logout")
     public String logout() {
         return "logout";
     }
