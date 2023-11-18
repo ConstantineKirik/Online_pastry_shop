@@ -21,7 +21,6 @@ import java.util.List;
 public class BucketController {
     private final BucketService bucketService;
     private final ProductService productService;
-    private final UserService userService;
 
     @GetMapping("/bucket")
     public String bucket(Model model, Principal principal) {

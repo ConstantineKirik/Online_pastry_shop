@@ -44,10 +44,10 @@ public class BucketServiceImpl implements BucketService {
     }
 
     @Override
-    public void addProduct(Bucket bucket, List<Integer> productId) {
+    public void addProduct(Bucket bucket, List<Integer> productIds) {
         List<Product> products = bucket.getProducts();
         List<Product> newProducts = products == null ? new ArrayList<>() : new ArrayList<>(products);
-        newProducts.addAll(getProductsById(productId));
+        newProducts.addAll(getProductsById(productIds));
         bucket.setProducts(newProducts);
         bucketRepository.save(bucket);
     }

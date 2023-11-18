@@ -18,21 +18,21 @@ CREATE TABLE IF NOT EXISTS products
     title VARCHAR(64) NOT NULL,
     category_id INT REFERENCES categories (id),
     description TEXT(2048),
-    price DECIMAL(4,2) NOT NULL
+    price DECIMAL(6,2) NOT NULL
     );
 
 CREATE TABLE IF NOT EXISTS buckets
 (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT REFERENCES users (id),
-    amount DECIMAL(4,2)
+    amount DECIMAL(6,2)
     );
 
 CREATE TABLE IF NOT EXISTS orders
 (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT REFERENCES users (id),
-    amount DECIMAL(4,2) NOT NULL,
+    amount DECIMAL(6,2) NOT NULL,
     delivery_address_id INT REFERENCES delivery_address (id)
     );
 

@@ -25,6 +25,6 @@
 
 <h3>Итого к оплате: ${bucketDTO.sum}</h3><br>
 
-<a href="<c:url value="#"/>">Оформить заказ</a>
+<a href="<c:url value="/deliveryAddress"/>">Перейти к оформлению заказа</a>
 
 <%@include file="common/footer.jsp"%>
