@@ -54,7 +54,7 @@ public class BucketServiceImpl implements BucketService {
 
     @Override
     public BucketDTO getBucketByUser(String username) {
-        User user = userService.findByUsername(username);
+        User user = userService.getByUsername(username);
         if(user.getBucket() == null){
             return new BucketDTO();
         }

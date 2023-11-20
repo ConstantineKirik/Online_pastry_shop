@@ -1,6 +1,7 @@
 package com.academy.kirik.online_pastry_shop.service.impl;
 
 import com.academy.kirik.online_pastry_shop.dto.UserDTO;
+import com.academy.kirik.online_pastry_shop.enums.UserStatus;
 import com.academy.kirik.online_pastry_shop.model.entity.User;
 import com.academy.kirik.online_pastry_shop.enums.Role;
 import com.academy.kirik.online_pastry_shop.model.repository.UserRepository;
@@ -22,6 +23,11 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
     public boolean save(UserDTO userDTO) {
 
         User userFromDB = userRepository.findByUsername(userDTO.getUsername());
@@ -36,7 +42,7 @@ public class UserServiceImpl implements UserService {
                 .mobileNumber(userDTO.getMobileNumber())
                 .email(userDTO.getEmail())
                 .orders(new ArrayList<>())
-                .status("NEW")
+                .status(UserStatus.NEW)
                 .build();
 
         userRepository.save(user);
@@ -44,17 +50,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(User user) {
-        userRepository.save(user);
+    public User getById(Integer id) {
+        return userRepository.getReferenceById(id);
     }
 
     @Override
-    public User findByUsername(String username) {
+    public User getByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
     @Override
-    public List<User> getAllByStatus(String status) {
+    public List<User> getAllByStatus(UserStatus status) {
         return userRepository.findAllByStatus(status);
     }
 
@@ -63,8 +69,17 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAllByRole(Role.ROLE_CLIENT);
     }
 
+
     @Override
-    public void updateUserStatus(User user, String status) {
+    public void updateUserRole(Integer id, Role role) {
+        User user = userRepository.getReferenceById(id);
+        user.setRole(role);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void updateUserStatus(Integer id, UserStatus status) {
+        User user = userRepository.getReferenceById(id);
         user.setStatus(status);
         userRepository.save(user);
     }

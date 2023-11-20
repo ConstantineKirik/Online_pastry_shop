@@ -66,7 +66,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public void addToUserBucket(Integer productId, String username) {
-        User user = userService.findByUsername(username);
+        User user = userService.getByUsername(username);
 
         Bucket bucket = user.getBucket();
         if(bucket == null){

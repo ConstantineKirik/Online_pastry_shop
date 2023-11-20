@@ -1,6 +1,8 @@
 package com.academy.kirik.online_pastry_shop.service;
 
 import com.academy.kirik.online_pastry_shop.dto.UserDTO;
+import com.academy.kirik.online_pastry_shop.enums.Role;
+import com.academy.kirik.online_pastry_shop.enums.UserStatus;
 import com.academy.kirik.online_pastry_shop.model.entity.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -12,11 +14,15 @@ public interface UserService extends UserDetailsService {
 
     boolean save(UserDTO userDTO);
 
-    User findByUsername(String username);
+    User getById(Integer id);
 
-    List<User> getAllByStatus(String status);
+    User getByUsername(String username);
+
+    List<User> getAllByStatus(UserStatus status);
 
     List<User> getAllClient();
 
-    void updateUserStatus(User user, String status);
+    void updateUserRole(Integer id, Role role);
+
+    void updateUserStatus(Integer id, UserStatus status);
 }

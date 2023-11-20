@@ -9,4 +9,6 @@ public class UserDTO {
     private String confirmPassword;
     private Long mobileNumber;
     private String email;
+    private String role;
+    private String status;
 }

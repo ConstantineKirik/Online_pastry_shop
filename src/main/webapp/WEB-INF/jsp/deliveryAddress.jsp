@@ -8,7 +8,7 @@
 
     <sf:input type="text" path="street" placeholder="Название улицы"></sf:input><br>
 
-    <sf:input type="text" path="house" placeholder="Номер дома"></sf:input><br><br>
+    <sf:input type="text" path="house" placeholder="Номер дома"></sf:input><br>
 
     <sf:input type="text" path="apartment" placeholder="Номер квартиры"></sf:input><br>
 

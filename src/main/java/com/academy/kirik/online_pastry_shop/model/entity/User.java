@@ -1,6 +1,7 @@
 package com.academy.kirik.online_pastry_shop.model.entity;
 
 import com.academy.kirik.online_pastry_shop.enums.Role;
+import com.academy.kirik.online_pastry_shop.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,8 +38,8 @@ public class User implements UserDetails{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bucket_id")
     private Bucket bucket;
-    @Column
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private List<Order> orders;

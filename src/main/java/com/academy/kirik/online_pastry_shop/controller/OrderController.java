@@ -52,14 +52,14 @@ public class OrderController {
     public String orderPlaced(@ModelAttribute("order") OrderDTO orderDTO, Principal principal) {
 
         orderService.createOrder(orderDTO, principal.getName());
-        bucketService.clearBucket(userService.findByUsername(principal.getName()));
+        bucketService.clearBucket(userService.getByUsername(principal.getName()));
 
         return "orderPlaced";
     }
 
     @GetMapping(value = "/orders")
     public String orders(Model model,Principal principal) {
-        User user = userService.findByUsername(principal.getName());
+        User user = userService.getByUsername(principal.getName());
         List<Order> orders = user.getOrders();
 
         model.addAttribute("orders", orders);
