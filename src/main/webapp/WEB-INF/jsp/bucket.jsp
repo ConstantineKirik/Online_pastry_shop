@@ -7,7 +7,6 @@
         <th>Кол-во</th>
         <th>Цена</th>
         <th>Сумма</th>
-        <th></th>
     </tr>
 
 <c:forEach items="${bucketDTO.bucketDetails}" var="detail">
@@ -17,7 +16,6 @@
         <td>${detail.amount}</td>
         <td>${detail.price}</td>
         <td>${detail.sum}</td>
-        <td><a href="<c:url value="#"/>">Удалить из корзины</a><br></td>
     </tr>
 
 </c:forEach>

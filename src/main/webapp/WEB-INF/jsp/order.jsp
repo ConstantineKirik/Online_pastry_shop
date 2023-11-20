@@ -28,14 +28,14 @@
 <c:url value="/orderPlaced" var="orderPlaced"/>
 <sf:form mehtod="post" action="${orderPlaced}" modelAttribute="order">
 
-    <input type="text" name="amount" value="${bucket.sum}"/>
-    <input type="text" name="deliveryAddressesId" value="${deliveryAddressId}"/>
+    <input type="hidden" name="amount" value="${bucket.sum}"/>
+    <input type="hidden" name="deliveryAddressesId" value="${deliveryAddressId}"/>
 
     <input type="submit" value="Подтвердить" />
 
 </sf:form>
 
-<a href="<c:url value="/orderPlaced"/>">Подтвердить</a>
+
 
 
 <%@include file="common/footer.jsp"%>

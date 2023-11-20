@@ -1,10 +1,8 @@
 package com.academy.kirik.online_pastry_shop.service.impl;
 
 import com.academy.kirik.online_pastry_shop.dto.UserDTO;
-import com.academy.kirik.online_pastry_shop.model.entity.Bucket;
 import com.academy.kirik.online_pastry_shop.model.entity.User;
 import com.academy.kirik.online_pastry_shop.enums.Role;
-import com.academy.kirik.online_pastry_shop.enums.UserStatus;
 import com.academy.kirik.online_pastry_shop.model.repository.UserRepository;
 import com.academy.kirik.online_pastry_shop.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -31,10 +32,11 @@ public class UserServiceImpl implements UserService {
         User user = User.builder()
                 .username(userDTO.getUsername())
                 .password(passwordEncoder.encode(userDTO.getPassword()))
-                .role(Role.CLIENT)
+                .role(Role.ROLE_CLIENT)
                 .mobileNumber(userDTO.getMobileNumber())
                 .email(userDTO.getEmail())
-                .status(UserStatus.BASIC)
+                .orders(new ArrayList<>())
+                .status("NEW")
                 .build();
 
         userRepository.save(user);
@@ -49,6 +51,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<User> getAllByStatus(String status) {
+        return userRepository.findAllByStatus(status);
+    }
+
+    @Override
+    public List<User> getAllClient() {
+        return userRepository.findAllByRole(Role.ROLE_CLIENT);
+    }
+
+    @Override
+    public void updateUserStatus(User user, String status) {
+        user.setStatus(status);
+        userRepository.save(user);
     }
 
     @Override

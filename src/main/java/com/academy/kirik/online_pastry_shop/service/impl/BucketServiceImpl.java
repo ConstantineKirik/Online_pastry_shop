@@ -78,4 +78,11 @@ public class BucketServiceImpl implements BucketService {
 
         return bucketDTO;
     }
+
+    @Override
+    public void clearBucket(User user) {
+        Bucket bucket = user.getBucket();
+        bucket.setProducts(new ArrayList<>());
+        bucketRepository.save(bucket);
+    }
 }

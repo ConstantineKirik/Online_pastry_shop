@@ -20,26 +20,5 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
 
-    @GetMapping("/addProduct")
-    public String addProduct(Model model) {
-        model.addAttribute("addProduct", new ProductDTO());
-        return "createProduct";
-    }
 
-    @PostMapping("/createProduct")
-    public String createProduct(@ModelAttribute("addProduct") ProductDTO productDTO, Model model) {
-
-        if (!productService.save(productDTO)) {
-            model.addAttribute("titleError", "Продукт с таким названием уже существует!");
-            return "createProduct";
-        }
-
-        return "redirect:/categories";
-    }
-
-    @GetMapping("/deleteProduct")
-    public String deleteProduct(@RequestParam Integer id){
-        productService.deleteById(id);
-        return "categories";
-    }
 }

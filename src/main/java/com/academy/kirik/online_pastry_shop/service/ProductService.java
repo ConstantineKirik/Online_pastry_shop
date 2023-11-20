@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface ProductService {
 
+    List<Product> getAll();
+
     boolean save(ProductDTO productDTO);
 
     Product getByTitle(String title);

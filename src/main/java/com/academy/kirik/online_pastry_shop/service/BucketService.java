@@ -13,4 +13,6 @@ public interface BucketService {
     void addProduct(Bucket bucket, List<Integer> productIds);
 
     BucketDTO getBucketByUser(String username);
+
+    void clearBucket(User user);
 }
