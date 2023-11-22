@@ -12,5 +12,5 @@ public interface CategoryService {
 
     List<Category> getAll();
 
-    void deleteById(Integer id);
+    void removeCategory(Integer id);
 }

@@ -8,17 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-public class AuthController {
+public class RegistrationController {
     private final UserService userService;
-
-    @GetMapping(value = "/login")
-    public String login() {
-        return "login";
-    }
 
     @GetMapping(value = "/registrationUser")
     public String registrationUser(Model model) {

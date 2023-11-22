@@ -91,7 +91,7 @@ public class AdminController {
 
     @GetMapping("/deleteCategory")
     public String deleteCategory(@RequestParam Integer id){
-        categoryService.deleteById(id);
+        categoryService.removeCategory(id);
         return "redirect:/productManagement";
     }
 
@@ -112,9 +112,23 @@ public class AdminController {
         return "redirect:/productManagement";
     }
 
+    @GetMapping("/updateProduct")
+    public String updateProduct(@RequestParam Integer id, Model model){
+        Product product = productService.getById(id);
+        model.addAttribute("product", product);
+        model.addAttribute("updateProduct", new ProductDTO());
+        return "updateProduct";
+    }
+
+    @PostMapping("/applyChangesProduct")
+    public String applyChangesProduct(@ModelAttribute("updateProduct") ProductDTO productDTO, @RequestParam Integer id){
+        productService.updateProduct(id, productDTO);
+        return "redirect:/productManagement";
+    }
+
     @GetMapping("/deleteProduct")
     public String deleteProduct(@RequestParam Integer id){
-        productService.deleteById(id);
+        productService.removeProduct(id);
         return "redirect:/productManagement";
     }
 }

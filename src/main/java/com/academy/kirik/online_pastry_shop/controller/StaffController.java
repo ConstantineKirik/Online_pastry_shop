@@ -28,9 +28,9 @@ public class StaffController {
     @GetMapping(value = "/acceptOrder")
     public String acceptOrder(@RequestParam Integer id){
 
-        orderService.updateOrderStatus(id, OrderStatus.ACCEPTED);
+        orderService.updateStatusOrder(id, OrderStatus.ACCEPTED);
 
-        return "redirect:/orderManagement";
+        return "redirect:/showNewOrders";
     }
 
     @GetMapping(value = "/showAcceptOrders")
@@ -45,9 +45,9 @@ public class StaffController {
     @GetMapping(value = "/formedOrder")
     public String formedOrder(@RequestParam Integer id){
 
-        orderService.updateOrderStatus(id, OrderStatus.FORMED);
+        orderService.updateStatusOrder(id, OrderStatus.FORMED);
 
-        return "redirect:/orderManagement";
+        return "redirect:/showAcceptOrders";
     }
 
     @GetMapping(value = "/showFormedOrders")
@@ -62,9 +62,9 @@ public class StaffController {
     @GetMapping(value = "/sentOrder")
     public String sentOrder(@RequestParam Integer id){
 
-        orderService.updateOrderStatus(id, OrderStatus.SENT);
+        orderService.updateStatusOrder(id, OrderStatus.SENT);
 
-        return "redirect:/orderManagement";
+        return "redirect:/showFormedOrders";
     }
 
     @GetMapping(value = "/showSentOrders")
@@ -79,9 +79,9 @@ public class StaffController {
     @GetMapping(value = "/deliveredOrder")
     public String deliveredOrder(@RequestParam Integer id){
 
-        orderService.updateOrderStatus(id, OrderStatus.DELIVERED);
+        orderService.updateStatusOrder(id, OrderStatus.DELIVERED);
 
-        return "redirect:/orderManagement";
+        return "redirect:/showSentOrders";
     }
 
     @GetMapping(value = "/showDeliveredOrders")
@@ -96,8 +96,8 @@ public class StaffController {
     @GetMapping(value = "/closeOrder")
     public String closeOrder(@RequestParam Integer id){
 
-        orderService.updateOrderStatus(id, OrderStatus.CLOSED);
+        orderService.updateStatusOrder(id, OrderStatus.CLOSED);
 
-        return "redirect:/orderManagement";
+        return "redirect:/showDeliveredOrders";
     }
 }

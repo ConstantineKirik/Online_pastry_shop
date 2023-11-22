@@ -20,8 +20,6 @@ public interface UserService extends UserDetailsService {
 
     List<User> getAllByStatus(UserStatus status);
 
-    List<User> getAllClient();
-
     void updateUserRole(Integer id, Role role);
 
     void updateUserStatus(Integer id, UserStatus status);

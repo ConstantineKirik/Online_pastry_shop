@@ -64,11 +64,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAllByStatus(status);
     }
 
-    @Override
-    public List<User> getAllClient() {
-        return userRepository.findAllByRole(Role.ROLE_CLIENT);
-    }
-
 
     @Override
     public void updateUserRole(Integer id, Role role) {

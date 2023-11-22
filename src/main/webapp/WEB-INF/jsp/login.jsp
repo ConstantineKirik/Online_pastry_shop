@@ -1,27 +1,19 @@
-<%@include file="common/header.jsp"%>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@include file="common/header.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
-<h2>Вход в систему</h2>
+<div class="auth">
 
-<c:url value="/login" var="login"/>
-<sf:form mehtod="post" action="${login}" >
+    <h2>Вход в систему</h2>
 
-    <p>
-        <label>
-        <input type="text" name="username" placeholder="Username" />
-        </label>
-    </p>
+    <c:url value="/login" var="login"/>
+    <sf:form mehtod="post" action="${login}">
 
-    <p>
-        <label>
-        <input type="password" name="password" placeholder="Password" />
-        </label>
-    </p>
+        <input type="text" name="username" placeholder="Username"/>
+        <input type="password" name="password" placeholder="Password"/>
+        <input type="submit" value="Войти"/>
 
-    <input type="submit" value="Login" />
-
-</sf:form>
+    </sf:form>
 
     <h4><a href="/registrationUser">Зарегистрироваться</a></h4>
-
-<%@include file="common/footer.jsp"%>
+</div>
+<%@include file="common/footer.jsp" %>

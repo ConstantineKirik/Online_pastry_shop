@@ -21,17 +21,19 @@ public class DeliveryAddressImpl implements DeliveryAddressService {
                 deliveryAddressDTO.getApartment());
 
         if (deliveryAddressFromDB == null) {
+
             DeliveryAddress deliveryAddress = DeliveryAddress.builder()
                     .street(deliveryAddressDTO.getStreet())
                     .house(deliveryAddressDTO.getHouse())
                     .apartment(deliveryAddressDTO.getApartment())
                     .build();
+
             deliveryAddressRepository.save(deliveryAddress);
         }
     }
 
     @Override
-    public Integer getByIdDeliveryAddress(DeliveryAddressDTO deliveryAddressDTO) {
+    public Integer getIdDeliveryAddress(DeliveryAddressDTO deliveryAddressDTO) {
         return deliveryAddressRepository.findByStreetAndHouseAndApartment(deliveryAddressDTO.getStreet(),
                 deliveryAddressDTO.getHouse(),
                 deliveryAddressDTO.getApartment()).getId();

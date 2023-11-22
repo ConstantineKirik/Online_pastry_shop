@@ -48,9 +48,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void updateOrderStatus(Integer id, OrderStatus status) {
+    public void updateStatusOrder(Integer id, OrderStatus status) {
         Order order = orderRepository.findOrderById(id);
+
         order.setStatus(status);
+
         orderRepository.save(order);
     }
 }

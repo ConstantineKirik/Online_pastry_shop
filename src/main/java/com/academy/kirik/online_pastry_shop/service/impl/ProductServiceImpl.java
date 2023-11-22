@@ -43,13 +43,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getByTitle(String title) {
-        return productRepository.findByTitle(title);
+    public Product getById(Integer id) {
+        return productRepository.getReferenceById(id);
     }
 
     @Override
-    public List<Product> findAllByCategory_Title(String categoryTitle) {
-        return productRepository.findAllByCategory_Title(categoryTitle);
+    public Product getByTitle(String title) {
+        return productRepository.findByTitle(title);
     }
 
     @Override
@@ -58,8 +58,19 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public void updateProduct(Integer id, ProductDTO productDTO) {
+        Product product = productRepository.getReferenceById(id);
+
+        product.setTitle(productDTO.getTitle());
+        product.setDescription(productDTO.getDescription());
+        product.setPrice(productDTO.getPrice());
+
+        productRepository.save(product);
+    }
+
+    @Override
     @Transactional
-    public void deleteById(Integer id) {
+    public void removeProduct(Integer id) {
         productRepository.deleteById(id);
     }
 

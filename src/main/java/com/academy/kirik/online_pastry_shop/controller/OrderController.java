@@ -43,18 +43,18 @@ public class OrderController {
         model.addAttribute("bucket", bucketDTO);
         model.addAttribute("deliveryAddress", deliveryAddressDTO);
         model.addAttribute("order", new OrderDTO());
-        model.addAttribute("deliveryAddressId", deliveryAddressService.getByIdDeliveryAddress(deliveryAddressDTO));
+        model.addAttribute("deliveryAddressId", deliveryAddressService.getIdDeliveryAddress(deliveryAddressDTO));
 
-        return "order";
+        return "confirmOrder";
     }
 
-    @PostMapping(value = "/orderPlaced")
-    public String orderPlaced(@ModelAttribute("order") OrderDTO orderDTO, Principal principal) {
+    @PostMapping(value = "/createOrder")
+    public String createOrder(@ModelAttribute("order") OrderDTO orderDTO, Principal principal) {
 
         orderService.createOrder(orderDTO, principal.getName());
         bucketService.clearBucket(userService.getByUsername(principal.getName()));
 
-        return "orderPlaced";
+        return "createOrder";
     }
 
     @GetMapping(value = "/orders")
