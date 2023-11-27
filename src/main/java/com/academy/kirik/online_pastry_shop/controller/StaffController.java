@@ -7,15 +7,21 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping(value = "/staff")
 public class StaffController {
     private  final OrderService orderService;
 
+    @GetMapping(value = "/orderManagement")
+    public String orderManagement(){
+        return "orderManagement";
+    }
     @GetMapping(value = "/showNewOrders")
     public String showNewOrders(Model model){
 
@@ -30,7 +36,7 @@ public class StaffController {
 
         orderService.updateStatusOrder(id, OrderStatus.ACCEPTED);
 
-        return "redirect:/showNewOrders";
+        return "redirect:/staff/showNewOrders";
     }
 
     @GetMapping(value = "/showAcceptOrders")
@@ -47,7 +53,7 @@ public class StaffController {
 
         orderService.updateStatusOrder(id, OrderStatus.FORMED);
 
-        return "redirect:/showAcceptOrders";
+        return "redirect:/staff/showAcceptOrders";
     }
 
     @GetMapping(value = "/showFormedOrders")
@@ -64,7 +70,7 @@ public class StaffController {
 
         orderService.updateStatusOrder(id, OrderStatus.SENT);
 
-        return "redirect:/showFormedOrders";
+        return "redirect:/staff/showFormedOrders";
     }
 
     @GetMapping(value = "/showSentOrders")
@@ -81,7 +87,7 @@ public class StaffController {
 
         orderService.updateStatusOrder(id, OrderStatus.DELIVERED);
 
-        return "redirect:/showSentOrders";
+        return "redirect:/staff/showSentOrders";
     }
 
     @GetMapping(value = "/showDeliveredOrders")
@@ -98,6 +104,6 @@ public class StaffController {
 
         orderService.updateStatusOrder(id, OrderStatus.CLOSED);
 
-        return "redirect:/showDeliveredOrders";
+        return "redirect:/staff/showDeliveredOrders";
     }
 }

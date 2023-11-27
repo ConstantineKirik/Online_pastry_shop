@@ -13,19 +13,22 @@ import com.academy.kirik.online_pastry_shop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping(value = "/admin")
 public class AdminController {
     private final UserService userService;
     private final CategoryService categoryService;
     private final ProductService productService;
+
+    @GetMapping(value = "/userManagement")
+    public String userManagement() {
+        return "userManagement";
+    }
 
     @GetMapping(value = "/showAllUsers")
     public String showAllUsers(@RequestParam String status, Model model) {
@@ -47,14 +50,13 @@ public class AdminController {
     }
 
     @PostMapping(value = "/statusUp")
-    public String statusUp(@ModelAttribute("change") UserDTO userDTO, @RequestParam Integer id){
-
+    public String statusUp(@ModelAttribute("change") UserDTO userDTO, @RequestParam Integer id) {
         userService.updateUserStatus(id, UserStatus.valueOf(userDTO.getStatus()));
         return "userManagement";
     }
 
     @PostMapping(value = "/assignRole")
-    public String assignRole(@ModelAttribute("change") UserDTO userDTO, @RequestParam Integer id){
+    public String assignRole(@ModelAttribute("change") UserDTO userDTO, @RequestParam Integer id) {
 
         userService.updateUserRole(id, Role.valueOf(userDTO.getRole()));
         return "userManagement";
@@ -86,13 +88,20 @@ public class AdminController {
             return "createCategory";
         }
 
-        return "redirect:/productManagement";
+        return "redirect:/admin/productManagement";
     }
 
     @GetMapping("/deleteCategory")
-    public String deleteCategory(@RequestParam Integer id){
+    public String deleteCategory(@RequestParam String title, Model model) {
+        Category category = categoryService.getByTitle(title);
+        model.addAttribute("removeCategory", category);
+        return "confirmRemove";
+    }
+
+    @GetMapping("/confirmRemoveCategory")
+    public String confirmRemoveCategory(@RequestParam Integer id) {
         categoryService.removeCategory(id);
-        return "redirect:/productManagement";
+        return "redirect:/admin/productManagement";
     }
 
     @GetMapping("/addProduct")
@@ -109,11 +118,11 @@ public class AdminController {
             return "createProduct";
         }
 
-        return "redirect:/productManagement";
+        return "redirect:/admin/productManagement";
     }
 
     @GetMapping("/updateProduct")
-    public String updateProduct(@RequestParam Integer id, Model model){
+    public String updateProduct(@RequestParam Integer id, Model model) {
         Product product = productService.getById(id);
         model.addAttribute("product", product);
         model.addAttribute("updateProduct", new ProductDTO());
@@ -121,14 +130,21 @@ public class AdminController {
     }
 
     @PostMapping("/applyChangesProduct")
-    public String applyChangesProduct(@ModelAttribute("updateProduct") ProductDTO productDTO, @RequestParam Integer id){
+    public String applyChangesProduct(@ModelAttribute("updateProduct") ProductDTO productDTO, @RequestParam Integer id) {
         productService.updateProduct(id, productDTO);
-        return "redirect:/productManagement";
+        return "redirect:/admin/productManagement";
     }
 
     @GetMapping("/deleteProduct")
-    public String deleteProduct(@RequestParam Integer id){
+    public String deleteProduct(@RequestParam Integer id, Model model) {
+        Product product = productService.getById(id);
+        model.addAttribute("removeProduct", product);
+        return "confirmRemove";
+    }
+
+    @GetMapping("/confirmRemoveProduct")
+    public String confirmRemoveProduct(@RequestParam Integer id) {
         productService.removeProduct(id);
-        return "redirect:/productManagement";
+        return "redirect:/admin/productManagement";
     }
 }

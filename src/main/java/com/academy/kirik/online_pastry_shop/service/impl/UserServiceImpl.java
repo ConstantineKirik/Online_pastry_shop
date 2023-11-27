@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Service
@@ -43,6 +44,7 @@ public class UserServiceImpl implements UserService {
                 .email(userDTO.getEmail())
                 .orders(new ArrayList<>())
                 .status(UserStatus.NEW)
+                .isAccountNonLocked(true)
                 .build();
 
         userRepository.save(user);
@@ -76,6 +78,10 @@ public class UserServiceImpl implements UserService {
     public void updateUserStatus(Integer id, UserStatus status) {
         User user = userRepository.getReferenceById(id);
         user.setStatus(status);
+
+        if(status.equals(UserStatus.BLACKLIST)){
+            user.setAccountNonLocked(false);
+        }
         userRepository.save(user);
     }
 
@@ -88,5 +94,27 @@ public class UserServiceImpl implements UserService {
         }
 
         return user;
+    }
+
+    @Override
+    public boolean checkMobileNumber(Long mobileNumber) {
+        List<User> users = userRepository.findAll();
+        for (User user: users){
+            if(Objects.equals(user.getMobileNumber(), mobileNumber)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean checkEmail(String email) {
+        List<User> users = userRepository.findAll();
+        for (User user: users){
+            if(user.getEmail().equals(email)){
+                return true;
+            }
+        }
+        return false;
     }
 }

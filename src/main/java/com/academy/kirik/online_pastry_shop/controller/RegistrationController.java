@@ -23,16 +23,26 @@ public class RegistrationController {
     @PostMapping(value = "/registration")
     public String registration(@ModelAttribute("registrationUser") UserDTO userDTO, Model model) {
 
-        if (!userService.save(userDTO)) {
-            model.addAttribute("usernameError", "Пользователь с таким именем уже существует!");
-            return "registration";
-        }
-
         if (!userDTO.getPassword().equals(userDTO.getConfirmPassword())) {
             model.addAttribute("passwordError", "Пароли не совпадают!");
             return "registration";
         }
 
-        return "login";
+        if (userService.checkMobileNumber(userDTO.getMobileNumber())) {
+            model.addAttribute("mobileNumberError", "Пользователь с таким номером уже существует!");
+            return "registration";
+        }
+
+        if (userService.checkEmail(userDTO.getEmail())) {
+            model.addAttribute("emailError", "Пользователь с таким емайлом уже существует!");
+            return "registration";
+        }
+
+        if (!userService.save(userDTO)) {
+            model.addAttribute("usernameError", "Пользователь с таким именем уже существует!");
+            return "registration";
+        }
+
+        return "redirect:/login";
     }
 }

@@ -12,11 +12,12 @@ public interface ProductService {
     boolean save(ProductDTO productDTO);
 
     Product getById(Integer id);
-    Product getByTitle(String title);
 
     void updateProduct(Integer id, ProductDTO productDTO);
 
     void removeProduct(Integer id);
 
     void addToUserBucket(Integer productId, String username);
+
+    List<Product> popular();
 }

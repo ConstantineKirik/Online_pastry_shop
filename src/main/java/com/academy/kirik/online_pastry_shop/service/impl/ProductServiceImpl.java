@@ -13,8 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -36,6 +36,7 @@ public class ProductServiceImpl implements ProductService {
                 .category(categoryRepository.findByTitle(productDTO.getCategory()))
                 .description(productDTO.getDescription())
                 .price(productDTO.getPrice())
+                .image(productDTO.getImage())
                 .build();
 
         productRepository.save(product);
@@ -45,11 +46,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getById(Integer id) {
         return productRepository.getReferenceById(id);
-    }
-
-    @Override
-    public Product getByTitle(String title) {
-        return productRepository.findByTitle(title);
     }
 
     @Override
@@ -80,12 +76,19 @@ public class ProductServiceImpl implements ProductService {
         User user = userService.getByUsername(username);
 
         Bucket bucket = user.getBucket();
-        if(bucket == null){
+        if (bucket == null) {
             Bucket newBucket = bucketService.createBucket(user, Collections.singletonList(productId));
             user.setBucket(newBucket);
             userService.save(user);
         } else {
             bucketService.addProduct(bucket, Collections.singletonList(productId));
         }
+    }
+
+    @Override
+    public List<Product> popular() {
+        return productRepository.popular().stream()
+                .map(productRepository::getReferenceById)
+                .collect(Collectors.toList());
     }
 }

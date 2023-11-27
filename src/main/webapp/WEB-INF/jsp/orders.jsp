@@ -2,12 +2,12 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 
 <div class="orders">
-<c:set var="orders" value="${orders}" scope="page"/>
+<c:set var="orders" value="${orders}"/>
 <c:if test="${empty orders}">
 
     <h4>У вас пока нет заказов для отслеживания</h4><br>
 
-    <a href="<c:url value="/categories"/>">Перейти к покупкам</a>
+    <a href="<c:url value="/users/categories"/>">Перейти к покупкам</a>
 </c:if>
 
 <c:if test="${not empty orders}">
@@ -23,7 +23,7 @@
             <tr>
                 <td>${order.id}</td>
                 <td>${order.status}</td>
-                <td><a href="<c:url value="/detailsOrder?id=${order.id}"/>">Посмотреть детали заказа</a></td>
+                <td><a href="<c:url value="/users/detailsOrder?id=${order.id}"/>">Посмотреть детали заказа</a></td>
             </tr>
 
         </c:forEach>

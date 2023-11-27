@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SortComparator;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Product {
     private String description;
     @Column
     private Double price;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinTable(
             name = "products_orders",
             joinColumns = {@JoinColumn(name = "product_id")},
@@ -41,4 +42,6 @@ public class Product {
             inverseJoinColumns = {@JoinColumn(name = "bucket_id")}
     )
     private List<Bucket> buckets;
+    @Column
+    private String image;
 }

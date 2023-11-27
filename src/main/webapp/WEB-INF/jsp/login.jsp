@@ -3,13 +3,22 @@
 
 <div class="auth">
 
-    <h2>Вход в систему</h2>
+    <h3>Вход в систему</h3>
 
     <c:url value="/login" var="login"/>
     <sf:form mehtod="post" action="${login}">
 
+        <sf:errors path="blackList"></sf:errors>
+        ${blackList}
+
         <input type="text" name="username" placeholder="Username"/>
+        <sf:errors path="usernameError"></sf:errors>
+        ${usernameError}
+
         <input type="password" name="password" placeholder="Password"/>
+        <sf:errors path="passwordError"></sf:errors>
+        ${passwordError}
+
         <input type="submit" value="Войти"/>
 
     </sf:form>

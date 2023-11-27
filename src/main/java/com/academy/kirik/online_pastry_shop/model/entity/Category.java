@@ -23,4 +23,6 @@ public class Category {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn (name = "category_id")
     private List<Product> products;
+    @Column
+    private String image;
 }

@@ -8,8 +8,9 @@ html {
 
 body {
     width: 1000px;
-    margin: 0 auto;
-    backdrop-filter: blur(3px);
+    height: 1300px;
+    margin: 0 auto auto auto;
+    backdrop-filter: blur(5px);
     padding: 0 20px 20px 20px;
 }
 button,
@@ -26,6 +27,7 @@ input[type=submit]{
     display: inline-block;
     font-size: 25px;
     margin: 4px 2px;
+    cursor: pointer;
 }
 input {
     display: block;
@@ -45,70 +47,150 @@ input {
 }
 .logo {
     position: absolute;
-    top: 5px;
-    bottom: 0;
+    top: 20px;
     left: 20px;
     margin: 0;
-    font-family: Snell Roundhand, Monotype Corsiva, cursive;
     font-size: 60px;
-    color: lightcoral;
+    color: firebrick;
+}
+.time-works{
+    position: absolute;
+    right: 20px;
+    font-size: 22px;
 }
 .header {
     position: absolute;
-    top: 15px;
-    bottom: 0;
-    right: 0;
-    margin: 0;
+    top: 150px;
+    right: 20px;
 }
 .auth {
-    width: 300px;
-    text-align: center;
     position: absolute;
-    top: 100px;
+    width: 300px;
+    top: 175px;
     left: 350px;
-    bottom: 0;
-    margin: 0;
+    text-align: center;
 }
 .management{
     position: absolute;
-    top: 75px;
-    bottom: 0;
+    top: 150px;
     left: 20px;
-    margin: 0;
+    width: 500px;
 }
 .userManagement,
 .userDetails{
     position: absolute;
-    top: 100px;
-    bottom: 0;
+    top: 225px;
     left: 20px;
+    width: 500px;
+}
+.attrs {
+    margin: 0 0 20px 0;
+    overflow: hidden;
+    font-size: 24px;
+}
+.attrs dt {
     margin: 0;
+    padding: 5px 0;
+    width: 200px;
+    float: left;
+    clear: both;
+    color: #808d9a;
+}
+.attrs dd {
+    margin: 0 0 0 150px;
+    padding: 5px 0;
 }
 .categories,
+.products {
+    position: absolute;
+    top: 260px;
+    left: 70px;
+}
+.category,
+.product {
+    position: relative;
+    float: left;
+    margin-right: 15px;
+    text-align: center;
+    font-size: 40px;
+}
+.category{
+    margin-bottom: 60px;
+}
+.text-category {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 46px;
+    width: 100%;
+    backdrop-filter: blur(6px);
+}
+.product{
+    margin-bottom: 180px;
+}
+.text-product{
+    position: absolute;
+    width: 100%;
+    height: 140px;
+    background-color: wheat;
+    text-align: center;
+    font-size: 24px;
+}
+.product-title{
+    position: absolute;
+    width: 100%;
+}
+.product-price{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+.categories-management{
+    position: absolute;
+    top: 200px;
+    left: 20px;
+}
 .addCategory{
     position: absolute;
-    top: 100px;
-    bottom: 0;
+    top: 200px;
     left: 20px;
-    margin: 0;
 }
-.products,
-.addProduct{
+.products-management{
     position: absolute;
-    top: 100px;
-    bottom: 0;
+    top: 200px;
     left: 520px;
-    margin: 0;
+    margin-bottom: 100px;
+}
+.addProduct,
+.updateProduct{
+    position: absolute;
+    top: 200px;
+    left: 520px;
+}
+.confirm-remove{
+    position: absolute;
+    width: 300px;
+    top: 200px;
+    left: 350px;
+    text-align: center;
+}
+.orders-management{
+    position: absolute;
+    top: 50px;
+    left: 20px;
 }
 table{
-    font-size: 25px;
+    font-size: 24px;
+}
+.popular{
+    position: absolute;
+    top: 200px;
+    left: 60px;
 }
 .orders{
     position: absolute;
-    top: 100px;
-    bottom: 0;
+    top: 225px;
     left: 20px;
-    margin: 0;
 }
 .bucket,
 .deliveryAddress,
@@ -116,36 +198,25 @@ table{
     width: 400px;
     text-align: center;
     position: absolute;
-    top: 100px;
+    top: 225px;
     left: 300px;
-    bottom: 0;
-    margin: 0;
+}
+.blackList{
+    text-align: center;
+    width: 400px;
+    position: absolute;
+    top: 200px;
+    left: 300px;
 }
 .footer{
-    font-size: 20px;
-}
-.contacts{
     position: absolute;
     bottom: 0;
     left: 20px;
-    margin: 0;
+    font-size: 24px;
+    width: 100%;
 }
-.networks{
-    position: absolute;
-    bottom: 23px;
-    left: 270px;
-    margin: 0;
+.info{
+    position: relative;
+    float: left;
+    margin-right: 50px;
 }
-.delivery{
-    position: absolute;
-    bottom: 90px;
-    left: 410px;
-    margin: 0;
-}
-.aboutUs{
-    position: absolute;
-    bottom: 90px;
-    left: 570px;
-    margin: 0;
-}
-

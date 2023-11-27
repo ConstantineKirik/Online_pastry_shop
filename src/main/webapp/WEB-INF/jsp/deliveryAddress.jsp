@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 
 <div class="deliveryAddress">
-<c:url value="/submitDeliveryAddress" var="deliveryAddress"/>
+<c:url value="/users/submitDeliveryAddress" var="deliveryAddress"/>
 <sf:form method="post" action="${deliveryAddress}" modelAttribute="deliveryAddress">
 
     <h2>Укажите адрес доставки</h2>

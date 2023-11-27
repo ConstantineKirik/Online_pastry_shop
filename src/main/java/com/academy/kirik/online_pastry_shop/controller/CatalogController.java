@@ -24,11 +24,13 @@ public class CatalogController {
         return "catalog";
     }
 
-    @GetMapping("/category")
+    @GetMapping("/users/category")
     public String getProductsByCategory(@RequestParam String title, Model model){
         Category category = categoryService.getByTitle(title);
         model.addAttribute("category", category);
         getAllCategory(model);
-        return "catalog";
+        return "category";
     }
+
+
 }

@@ -6,6 +6,7 @@
 
     <table>
         <tr>
+            <th></th>
             <th>Название</th>
             <th>Кол-во</th>
             <th>Цена за ед.</th>
@@ -15,6 +16,7 @@
         <c:forEach items="${bucket.bucketDetails}" var="detail">
 
             <tr>
+                <td><img src="/images/${detail.title}.png" width="60" height="70" alt=""/></td>
                 <td>${detail.title}</td>
                 <td>${detail.amount} шт.</td>
                 <td>${detail.price} руб.</td>
@@ -28,7 +30,7 @@
     <br><br>
     Aдрес доставки:<br> ул.${deliveryAddress.street} д.${deliveryAddress.house} кв.${deliveryAddress.apartment}
 
-    <c:url value="/createOrder" var="createOrder"/>
+    <c:url value="/users/createOrder" var="createOrder"/>
     <sf:form mehtod="post" action="${createOrder}" modelAttribute="order">
 
         <input type="hidden" name="amount" value="${bucket.sum}"/>

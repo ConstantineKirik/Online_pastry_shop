@@ -12,16 +12,17 @@ import com.academy.kirik.online_pastry_shop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping(value = "/users")
 public class OrderController {
     private final DeliveryAddressService deliveryAddressService;
     private final BucketService bucketService;
@@ -61,6 +62,8 @@ public class OrderController {
     public String orders(Model model,Principal principal) {
         User user = userService.getByUsername(principal.getName());
         List<Order> orders = user.getOrders();
+
+        Collections.reverse(orders);
 
         model.addAttribute("orders", orders);
         return "orders";

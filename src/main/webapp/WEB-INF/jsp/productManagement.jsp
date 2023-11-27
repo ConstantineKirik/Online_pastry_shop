@@ -1,26 +1,26 @@
 <%@include file="common/header.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 
-<div class="categories">
+<div class="categories-management">
 <h3>Управление катекориями</h3>
 
-<form action="<c:url value="/addCategory"/>">
+<form action="<c:url value="/admin/addCategory"/>">
     <button type="submit">Добавить категорию</button>
 </form>
 
 <c:forEach items="${categories}" var="category">
 
-    <a href="<c:url value="/category?title=${category.title}"/>">${category.title}</a>
+    <a href="<c:url value="/users/category?title=${category.title}"/>">${category.title}</a>
 
-    <a href="<c:url value="/deleteCategory?id=${category.id}"/>">Удалить</a><br>
+    <a href="<c:url value="/admin/deleteCategory?title=${category.title}"/>">Удалить</a><br>
 
 </c:forEach>
 </div>
 
-<div class="products">
+<div class="products-management">
 <h3>Управление продуктами</h3>
 
-<form action="<c:url value="/addProduct"/>">
+<form action="<c:url value="/admin/addProduct"/>">
     <button type="submit">Добавить продукт</button>
 </form>
 
@@ -38,8 +38,8 @@
             <td>${product.title}</td>
             <td>${product.price}</td>
 
-            <td><a href="<c:url value="/updateProduct?id=${product.id}"/>">Изменить</a></td>
-            <td><a href="<c:url value="/deleteProduct?id=${product.id}"/>">Удалить</a></td>
+            <td><a href="<c:url value="/admin/updateProduct?id=${product.id}"/>">Изменить</a></td>
+            <td><a href="<c:url value="/admin/deleteProduct?id=${product.id}"/>">Удалить</a></td>
         </tr>
 
     </c:forEach>

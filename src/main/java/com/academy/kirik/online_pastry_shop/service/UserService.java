@@ -23,4 +23,8 @@ public interface UserService extends UserDetailsService {
     void updateUserRole(Integer id, Role role);
 
     void updateUserStatus(Integer id, UserStatus status);
+
+    boolean checkMobileNumber(Long mobileNumber);
+
+    boolean checkEmail(String email);
 }

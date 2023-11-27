@@ -1,6 +1,8 @@
 package com.academy.kirik.online_pastry_shop.config;
 
+import com.academy.kirik.online_pastry_shop.enums.Role;
 import com.academy.kirik.online_pastry_shop.service.UserService;
+import jakarta.servlet.DispatcherType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -56,11 +58,16 @@ public class SecurityConfig {
 
         return http
                 .authorizeHttpRequests(auth -> auth
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
+                        .requestMatchers(antMatcher("/admin/**")).hasRole("ADMIN")
+                        .requestMatchers(antMatcher("/staff/**")).hasAnyRole("MANAGER", "CONFECTIONER", "COURIER")
+                        .requestMatchers(antMatcher("/users/**")).authenticated()
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
+                        .failureForwardUrl("/loginError")
                         .defaultSuccessUrl("/")
                         .permitAll()
                 )

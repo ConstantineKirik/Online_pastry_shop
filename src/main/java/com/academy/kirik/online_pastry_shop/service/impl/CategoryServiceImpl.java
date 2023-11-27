@@ -33,6 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         Category newCategory = Category.builder()
                 .title(category.getTitle())
+                .image(category.getImage())
                 .build();
 
         categoryRepository.save(newCategory);

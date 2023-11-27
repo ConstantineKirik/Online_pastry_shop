@@ -5,13 +5,13 @@
     <h2>Вы уверены?</h2>
 
     <c:url value="/logout" var="logout"/>
-    <sf:form mehtod="post" action="${logout}">
-        <input type="submit" value="Выйти"/>
+    <sf:form method="post" action="${logout}">
+        <input type="submit" value="Да, выйти"/>
     </sf:form>
     <c:url value="/" var="main"/>
-    <sf:form mehtod="get" action="${main}">
+    <sf:form method="get" action="${main}">
         <input type="submit" value="Остаться"/>
     </sf:form>
-
 </div>
+
 <%@include file="common/footer.jsp" %>

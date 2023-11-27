@@ -1,0 +1,1 @@
+ALTER TABLE users ADD COLUMN is_account_non_locked BOOL;

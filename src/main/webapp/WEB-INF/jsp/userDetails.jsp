@@ -2,33 +2,37 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <div class="userDetails">
-    <dl>
-        <dt>Пользователь №${user.id}</dt>
-            <dd>Имя пользователя: ${user.username}</dd>
-            <dd>Телефон: ${user.mobileNumber}</dd>
-            <dd>Email: ${user.email}</dd>
-            <dd>Кол-во заказов: ${fn:length(user.orders)}</dd>
-            <dd>Статус: ${user.status}</dd>
-            <dd></dd>
+    <dl class="attrs">
+        <dt>Пользователь:</dt>
+        <dd>№${user.id}</dd>
+
+        <dt>Имя пользователя:</dt>
+        <dd>${user.username}</dd>
+
+        <dt>Телефон:</dt>
+        <dd>+${user.mobileNumber}</dd>
+
+        <dt>Email:</dt>
+        <dd>${user.email}</dd>
+
+        <dt>Кол-во заказов:</dt>
+        <dd>${fn:length(user.orders)}</dd>
+
+        <dt>Статус:</dt>
+        <dd>${user.status}</dd>
     </dl>
 
-<c:url value="/statusUp?id=${user.id}" var="statusUp"/>
-<sf:form method="post" action="${statusUp}" modelAttribute="change">
+    <c:url value="/admin/statusUp?id=${user.id}" var="statusUp"/>
+    <sf:form method="post" action="${statusUp}" modelAttribute="change">
+        <sf:input type="text" path="status" placeholder="Повысить до"></sf:input>
+        <input type="submit" value="Повысить">
+    </sf:form>
 
-    <sf:input type="text" path="status" placeholder="Повысить до"></sf:input>
-
-    <input type="submit" value="Повысить">
-
-</sf:form>
-
-<c:url value="/assignRole?id=${user.id}" var="assignRole"/>
-<sf:form method="post" action="${assignRole}" modelAttribute="change">
-
-    <sf:input type="text" path="role" placeholder="Назначить на роль"></sf:input>
-
-    <input type="submit" value="Назначить">
-
-</sf:form>
+    <c:url value="/admin/assignRole?id=${user.id}" var="assignRole"/>
+    <sf:form method="post" action="${assignRole}" modelAttribute="change">
+        <sf:input type="text" path="role" placeholder="Назначить на роль"></sf:input>
+        <input type="submit" value="Назначить">
+    </sf:form>
 </div>
 
 <%@include file="common/footer.jsp" %>

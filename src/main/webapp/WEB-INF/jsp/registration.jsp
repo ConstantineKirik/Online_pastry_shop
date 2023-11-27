@@ -6,7 +6,7 @@
     <c:url value="/registration" var="registration"/>
     <sf:form method="post" action="${registration}" modelAttribute="registrationUser">
 
-        <h2>Регистрация</h2>
+        <h3>Регистрация</h3>
 
         <sf:input type="text" path="username" placeholder="Username"></sf:input>
         <sf:errors path="username"></sf:errors>
@@ -19,8 +19,12 @@
         ${passwordError}
 
         <sf:input type="text" path="mobileNumber" placeholder="Mobile number"></sf:input>
+        <sf:errors path="mobileNumber"></sf:errors>
+        ${mobileNumberError}
 
         <sf:input type="text" path="email" placeholder="Email"></sf:input>
+        <sf:errors path="email"></sf:errors>
+        ${emailError}
 
         <input type="submit" value="Зарегистрироваться">
 
