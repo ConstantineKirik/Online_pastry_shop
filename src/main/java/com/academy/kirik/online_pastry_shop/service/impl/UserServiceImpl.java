@@ -14,12 +14,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -32,6 +31,7 @@ public class UserServiceImpl implements UserService {
     public boolean save(UserDTO userDTO) {
 
         User userFromDB = userRepository.findByUsername(userDTO.getUsername());
+
         if (userFromDB != null) {
             return false;
         }
@@ -66,11 +66,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAllByStatus(status);
     }
 
-
     @Override
     public void updateUserRole(Integer id, Role role) {
         User user = userRepository.getReferenceById(id);
         user.setRole(role);
+
         userRepository.save(user);
     }
 
@@ -79,9 +79,10 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.getReferenceById(id);
         user.setStatus(status);
 
-        if(status.equals(UserStatus.BLACKLIST)){
+        if (status.equals(UserStatus.BLACKLIST)) {
             user.setAccountNonLocked(false);
         }
+
         userRepository.save(user);
     }
 
@@ -98,23 +99,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkMobileNumber(Long mobileNumber) {
-        List<User> users = userRepository.findAll();
-        for (User user: users){
-            if(Objects.equals(user.getMobileNumber(), mobileNumber)){
-                return true;
-            }
-        }
-        return false;
+        User user = userRepository.findByMobileNumber(mobileNumber);
+
+        return user != null;
     }
 
     @Override
     public boolean checkEmail(String email) {
-        List<User> users = userRepository.findAll();
-        for (User user: users){
-            if(user.getEmail().equals(email)){
-                return true;
-            }
-        }
-        return false;
+        User user = userRepository.findByEmail(email);
+
+        return user != null;
     }
 }

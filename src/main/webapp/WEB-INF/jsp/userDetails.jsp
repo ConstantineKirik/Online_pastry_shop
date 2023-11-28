@@ -1,7 +1,7 @@
 <%@include file="common/header.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-<div class="userDetails">
+<div class="user-details">
     <dl class="attrs">
         <dt>Пользователь:</dt>
         <dd>№${user.id}</dd>

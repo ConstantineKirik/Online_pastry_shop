@@ -5,7 +5,7 @@
 <c:url value="/admin/applyChangesProduct?id=${product.id}" var="applyChangesProduct"/>
 <sf:form method="post" action="${applyChangesProduct}" modelAttribute="updateProduct">
 
-    <div class="updateProduct">
+    <div class="update-product">
     <h3>Изменение продукта</h3>
 
     <sf:input type="text" path="title" placeholder="Новое название"></sf:input>

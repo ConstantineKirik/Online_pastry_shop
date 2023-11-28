@@ -1,34 +1,34 @@
-<%@include file="common/header.jsp"%>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@include file="common/header.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <div class="orders">
-<c:set var="orders" value="${orders}"/>
-<c:if test="${empty orders}">
+    <c:set var="orders" value="${orders}"/>
+    <c:if test="${empty orders}">
 
-    <h4>У вас пока нет заказов для отслеживания</h4><br>
+        <h4>У вас пока нет заказов для отслеживания</h4><br>
 
-    <a href="<c:url value="/users/categories"/>">Перейти к покупкам</a>
-</c:if>
+        <a href="<c:url value="/users/categories"/>">Перейти к покупкам</a>
+    </c:if>
 
-<c:if test="${not empty orders}">
-    <table>
-        <tr>
-            <th>Номер заказа</th>
-            <th>Статус</th>
-            <th></th>
-        </tr>
-
-        <c:forEach items="${orders}" var="order">
-
+    <c:if test="${not empty orders}">
+        <table>
             <tr>
-                <td>${order.id}</td>
-                <td>${order.status}</td>
-                <td><a href="<c:url value="/users/detailsOrder?id=${order.id}"/>">Посмотреть детали заказа</a></td>
+                <th>Номер заказа</th>
+                <th>Статус</th>
+                <th></th>
             </tr>
 
-        </c:forEach>
-    </table>
-</c:if>
+            <c:forEach items="${orders}" var="order">
+
+                <tr>
+                    <td>${order.id}</td>
+                    <td>${order.status}</td>
+                    <td><a href="<c:url value="/users/detailsOrder?id=${order.id}"/>">Посмотреть детали заказа</a></td>
+                </tr>
+
+            </c:forEach>
+        </table>
+    </c:if>
 </div>
 
-<%@include file="common/footer.jsp"%>
+<%@include file="common/footer.jsp" %>

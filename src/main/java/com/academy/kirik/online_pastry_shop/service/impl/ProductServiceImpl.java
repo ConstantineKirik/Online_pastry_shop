@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
+
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
     private final UserService userService;
@@ -27,6 +28,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public boolean save(ProductDTO productDTO) {
         Product productFromDB = productRepository.findByTitle(productDTO.getTitle());
+
         if (productFromDB != null) {
             return false;
         }
@@ -77,6 +79,7 @@ public class ProductServiceImpl implements ProductService {
         User user = userService.getByUsername(username);
 
         Bucket bucket = user.getBucket();
+
         if (bucket == null) {
             Bucket newBucket = bucketService.createBucket(user, Collections.singletonList(productId));
             user.setBucket(newBucket);

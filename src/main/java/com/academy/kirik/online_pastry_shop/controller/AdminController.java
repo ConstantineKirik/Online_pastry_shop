@@ -21,6 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping(value = "/admin")
 public class AdminController {
+
     private final UserService userService;
     private final CategoryService categoryService;
     private final ProductService productService;

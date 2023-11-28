@@ -13,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class ProductServiceImplTest {
@@ -47,27 +46,47 @@ public class ProductServiceImplTest {
     }
 
     @Test
-    public void popularTest(){
+    public void popularTest() {
         List<Integer> expectedProducts = new ArrayList<>();
         Mockito.when(productRepository.popular()).thenReturn(expectedProducts);
 
-        List<Integer> actualProducts = productService.popular().stream().map(Product::getId).collect(Collectors.toList());;
+        List<Integer> actualProducts = productService.popular().stream().map(Product::getId).collect(Collectors.toList());
 
         assertEquals(expectedProducts, actualProducts);
     }
 
     @Test
-    void saveTest(){
-        ProductDTO productDTO = ProductDTO.builder()
-                .title("Title")
-                .category("Category")
-                .description("Description")
-                .price(1.0)
-                .image("Image")
-                .build();
+    void saveTrueTest() {
+        ProductDTO productDTO = ProductDTO.builder().title("Title").build();
+        Mockito.when(productRepository.findByTitle(Mockito.anyString())).thenReturn(null);
 
         boolean result = productService.save(productDTO);
 
         assertTrue(result);
+    }
+
+    @Test
+    void saveFalseTest() {
+        ProductDTO productDTO = ProductDTO.builder().title("Title").build();
+        Product product = Product.builder().title("Title").build();
+        Mockito.when(productRepository.findByTitle(Mockito.anyString())).thenReturn(product);
+
+        boolean result = productService.save(productDTO);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void updateProductTest() {
+        Integer id = 1;
+        String Before = "Before";
+        String After = "After";
+        Product product = Product.builder().title(Before).build();
+        ProductDTO productDTO = ProductDTO.builder().title(After).build();
+        Mockito.when(productRepository.getReferenceById(Mockito.anyInt())).thenReturn(product);
+
+        productService.updateProduct(id, productDTO);
+
+        assertEquals(After, product.getTitle());
     }
 }

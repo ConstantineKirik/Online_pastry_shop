@@ -17,11 +17,11 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer id;
+    private Integer id;
     @Column
     private String title;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn (name = "category_id")
+    @JoinColumn(name = "category_id")
     private List<Product> products;
     @Column
     private String image;

@@ -1,9 +1,8 @@
 <%@include file="common/header.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-<div class="confirmOrder">
+<div class="confirm-order">
     Ваш заказ
-
     <table>
         <tr>
             <th></th>

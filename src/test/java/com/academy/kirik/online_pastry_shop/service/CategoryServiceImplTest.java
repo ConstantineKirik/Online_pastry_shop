@@ -11,8 +11,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class CategoryServiceImplTest {
@@ -45,11 +44,22 @@ public class CategoryServiceImplTest {
     }
 
     @Test
-    public void saveTest(){
+    public void saveTrueTest() {
         Category category = Category.builder().title("Test").build();
+        Mockito.when(categoryRepository.findByTitle(Mockito.anyString())).thenReturn(null);
 
         boolean result = categoryService.save(category);
 
         assertTrue(result);
+    }
+
+    @Test
+    public void saveFalseTest() {
+        Category category = Category.builder().title("Test").build();
+        Mockito.when(categoryRepository.findByTitle(Mockito.anyString())).thenReturn(category);
+
+        boolean result = categoryService.save(category);
+
+        assertFalse(result);
     }
 }

@@ -24,7 +24,7 @@ public class OrderServiceImplTest {
     OrderRepository orderRepository;
 
     @Test
-    public void getByIdTest(){
+    public void getByIdTest() {
         Integer id = 1;
         Order expectedOrder = Order.builder().id(id).build();
         Mockito.when(orderRepository.findOrderById(Mockito.anyInt())).thenReturn(expectedOrder);
@@ -35,12 +35,23 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void getByStatusTest(){
+    public void getByStatusTest() {
         List<Order> expectedOrders = new ArrayList<>();
         Mockito.when(orderRepository.findOrdersByStatus(OrderStatus.NEW)).thenReturn(expectedOrders);
 
         List<Order> actualOrders = orderService.getByStatus(OrderStatus.NEW);
 
         assertEquals(expectedOrders, actualOrders);
+    }
+
+    @Test
+    public void updateStatusOrderTest() {
+        Integer id = 1;
+        Order order = Order.builder().id(id).status(OrderStatus.NEW).build();
+        Mockito.when(orderRepository.findOrderById(Mockito.anyInt())).thenReturn(order);
+
+        orderService.updateStatusOrder(id, OrderStatus.CLOSED);
+
+        assertEquals(OrderStatus.CLOSED, order.getStatus());
     }
 }

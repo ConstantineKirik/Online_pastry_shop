@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
+
     private final CategoryRepository categoryRepository;
 
     @Override
@@ -27,6 +28,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public boolean save(Category category) {
         Category categoryFromDB = categoryRepository.findByTitle(category.getTitle());
+
         if (categoryFromDB != null) {
             return false;
         }

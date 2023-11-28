@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class DeliveryAddressImpl implements DeliveryAddressService {
+
     private final DeliveryAddressRepository deliveryAddressRepository;
 
     @Override
@@ -21,7 +22,6 @@ public class DeliveryAddressImpl implements DeliveryAddressService {
                 deliveryAddressDTO.getApartment());
 
         if (deliveryAddressFromDB == null) {
-
             DeliveryAddress deliveryAddress = DeliveryAddress.builder()
                     .street(deliveryAddressDTO.getStreet())
                     .house(deliveryAddressDTO.getHouse())

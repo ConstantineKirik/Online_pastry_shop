@@ -15,15 +15,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping(value = "/users")
 public class OrderController {
+
     private final DeliveryAddressService deliveryAddressService;
     private final BucketService bucketService;
     private final OrderService orderService;
@@ -59,7 +58,7 @@ public class OrderController {
     }
 
     @GetMapping(value = "/orders")
-    public String orders(Model model,Principal principal) {
+    public String orders(Model model, Principal principal) {
         User user = userService.getByUsername(principal.getName());
         List<Order> orders = user.getOrders();
 

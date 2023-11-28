@@ -3,20 +3,20 @@
 
 <div class="management">
     <div class="orders-management">
-    <sec:authorize access="hasRole('MANAGER')">
+        <sec:authorize access="hasRole('MANAGER')">
 
-        <a href="<c:url value="/staff/showNewOrders"/> ">Новые</a>
-        <a href="<c:url value="/staff/showDeliveredOrders"/> ">Доставленные</a><br>
-        <br>
-        <c:forEach items="${newOrders}" var="order">
-            <a href="<c:url value="/users/detailsOrder?id=${order.id}"/>">Заказ №${order.id}</a> - ${order.status} -
-            <a href="<c:url value="/staff/acceptOrder?id=${order.id}"/>">Принять</a><br>
-        </c:forEach>
+            <a href="<c:url value="/staff/showNewOrders"/> ">Новые</a>
+            <a href="<c:url value="/staff/showDeliveredOrders"/> ">Доставленные</a><br>
+            <br>
+            <c:forEach items="${newOrders}" var="order">
+                <a href="<c:url value="/users/detailsOrder?id=${order.id}"/>">Заказ №${order.id}</a> - ${order.status} -
+                <a href="<c:url value="/staff/acceptOrder?id=${order.id}"/>">Принять</a><br>
+            </c:forEach>
 
-        <c:forEach items="${deliveredOrders}" var="order">
-            <a href="<c:url value="/users/detailsOrder?id=${order.id}"/>">Заказ №${order.id}</a> - ${order.status} -
-            <a href="<c:url value="/staff/closeOrder?id=${order.id}"/>">Закрыть</a><br>
-        </c:forEach>
+            <c:forEach items="${deliveredOrders}" var="order">
+                <a href="<c:url value="/users/detailsOrder?id=${order.id}"/>">Заказ №${order.id}</a> - ${order.status} -
+                <a href="<c:url value="/staff/closeOrder?id=${order.id}"/>">Закрыть</a><br>
+            </c:forEach>
 
         </sec:authorize>
 
@@ -47,4 +47,5 @@
     </div>
     </sec:authorize>
 </div>
+
 <%@include file="common/footer.jsp" %>

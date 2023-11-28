@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequiredArgsConstructor
 public class ExceptionController {
+
     private final UserService userService;
 
     @PostMapping(value = "/loginError")

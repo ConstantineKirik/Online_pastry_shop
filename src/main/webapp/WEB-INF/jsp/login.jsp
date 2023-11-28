@@ -11,11 +11,11 @@
         <sf:errors path="blackList"></sf:errors>
         ${blackList}
 
-        <input type="text" name="username" placeholder="Username"/>
+        <input type="text" name="username" placeholder="Имя пользователя"/>
         <sf:errors path="usernameError"></sf:errors>
         ${usernameError}
 
-        <input type="password" name="password" placeholder="Password"/>
+        <input type="password" name="password" placeholder="Пароль"/>
         <sf:errors path="passwordError"></sf:errors>
         ${passwordError}
 
@@ -25,4 +25,5 @@
 
     <h4><a href="/registrationUser">Зарегистрироваться</a></h4>
 </div>
+
 <%@include file="common/footer.jsp" %>

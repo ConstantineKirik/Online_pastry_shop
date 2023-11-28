@@ -26,4 +26,5 @@
     <br>
     Статус: ${order.status}
 </div>
+
 <%@include file="common/footer.jsp" %>

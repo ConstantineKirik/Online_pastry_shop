@@ -13,10 +13,11 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class CatalogController {
+
     private final CategoryService categoryService;
 
     @GetMapping("/catalog")
-    public String getAllCategory(Model model){
+    public String getAllCategory(Model model) {
 
         List<Category> categories = categoryService.getAll();
         model.addAttribute("categories", categories);
@@ -25,12 +26,10 @@ public class CatalogController {
     }
 
     @GetMapping("/users/category")
-    public String getProductsByCategory(@RequestParam String title, Model model){
+    public String getProductsByCategory(@RequestParam String title, Model model) {
         Category category = categoryService.getByTitle(title);
         model.addAttribute("category", category);
         getAllCategory(model);
         return "category";
     }
-
-
 }

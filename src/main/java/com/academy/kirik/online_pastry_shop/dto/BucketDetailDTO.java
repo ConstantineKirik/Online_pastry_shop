@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Builder
 public class BucketDetailDTO {
+
     private String title;
     private Integer productId;
     private Double price;

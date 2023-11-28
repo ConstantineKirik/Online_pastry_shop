@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class OrderDTO {
+
     private Double amount;
     private Integer deliveryAddressesId;
 }

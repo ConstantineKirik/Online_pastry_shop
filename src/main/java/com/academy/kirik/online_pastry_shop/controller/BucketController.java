@@ -17,7 +17,8 @@ import java.security.Principal;
 @RequiredArgsConstructor
 @RequestMapping(value = "/users")
 public class BucketController {
-    private  final UserService userService;
+
+    private final UserService userService;
     private final BucketService bucketService;
     private final ProductService productService;
     private final CatalogController catalogController;
