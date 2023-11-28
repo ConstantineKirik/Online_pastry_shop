@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 public class CategoryServiceImplTest {
@@ -20,25 +21,35 @@ public class CategoryServiceImplTest {
     CategoryService categoryService;
 
     @MockBean
-    CategoryRepository categoryRepositoryMock;
+    CategoryRepository categoryRepository;
 
     @Test
     public void getAllTest() {
-        List<Category> categoriesFromMock = new ArrayList<>();
-        Mockito.when(categoryRepositoryMock.findAll()).thenReturn(categoriesFromMock);
+        List<Category> expectedCategories = new ArrayList<>();
+        Mockito.when(categoryRepository.findAll()).thenReturn(expectedCategories);
 
-        List<Category> categories = categoryService.getAll();
+        List<Category> actualCategories = categoryService.getAll();
 
-        assertEquals(categories, categoriesFromMock);
+        assertEquals(expectedCategories, actualCategories);
     }
 
     @Test
     public void getByTitleTest() {
-        Category categoryFromMock = new Category();
-        Mockito.when(categoryRepositoryMock.findByTitle("Test")).thenReturn(categoryFromMock);
+        String title = "Test";
+        Category expectedCategory = Category.builder().title(title).build();
+        Mockito.when(categoryRepository.findByTitle(Mockito.anyString())).thenReturn(expectedCategory);
 
-        Category category = categoryService.getByTitle("Test");
+        Category actualCategory = categoryService.getByTitle(title);
 
-        assertEquals(category, categoryFromMock);
+        assertEquals(expectedCategory, actualCategory);
+    }
+
+    @Test
+    public void saveTest(){
+        Category category = Category.builder().build();
+
+        boolean result = categoryService.save(category);
+
+        assertTrue(result);
     }
 }

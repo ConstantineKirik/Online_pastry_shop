@@ -54,6 +54,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void updateProduct(Integer id, ProductDTO productDTO) {
         Product product = productRepository.getReferenceById(id);
 

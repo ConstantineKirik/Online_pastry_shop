@@ -3,7 +3,6 @@ package com.academy.kirik.online_pastry_shop.service.impl;
 import com.academy.kirik.online_pastry_shop.dto.OrderDTO;
 import com.academy.kirik.online_pastry_shop.enums.OrderStatus;
 import com.academy.kirik.online_pastry_shop.model.entity.Order;
-import com.academy.kirik.online_pastry_shop.model.entity.Product;
 import com.academy.kirik.online_pastry_shop.model.entity.User;
 import com.academy.kirik.online_pastry_shop.model.repository.DeliveryAddressRepository;
 import com.academy.kirik.online_pastry_shop.model.repository.OrderRepository;
@@ -12,7 +11,6 @@ import com.academy.kirik.online_pastry_shop.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
