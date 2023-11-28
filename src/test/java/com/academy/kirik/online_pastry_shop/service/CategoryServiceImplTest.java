@@ -46,7 +46,7 @@ public class CategoryServiceImplTest {
 
     @Test
     public void saveTest(){
-        Category category = Category.builder().build();
+        Category category = Category.builder().title("Test").build();
 
         boolean result = categoryService.save(category);
 

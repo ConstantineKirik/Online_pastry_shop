@@ -36,11 +36,11 @@ public class OrderServiceImplTest {
 
     @Test
     public void getByStatusTest(){
-        List<Order> ordersFromMock = new ArrayList<>();
-        Mockito.when(orderRepository.findOrdersByStatus(OrderStatus.NEW)).thenReturn(ordersFromMock);
+        List<Order> expectedOrders = new ArrayList<>();
+        Mockito.when(orderRepository.findOrdersByStatus(OrderStatus.NEW)).thenReturn(expectedOrders);
 
-        List<Order> orders = orderService.getByStatus(OrderStatus.NEW);
+        List<Order> actualOrders = orderService.getByStatus(OrderStatus.NEW);
 
-        assertEquals(orders, ordersFromMock);
+        assertEquals(expectedOrders, actualOrders);
     }
 }

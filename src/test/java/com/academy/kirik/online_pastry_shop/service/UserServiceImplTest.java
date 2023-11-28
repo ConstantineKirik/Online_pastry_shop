@@ -55,12 +55,12 @@ public class UserServiceImplTest {
 
     @Test
     public void getAllByStatusTest() {
-        List<User> usersFromMock = new ArrayList<>();
-        Mockito.when(userRepository.findAllByStatus(UserStatus.STAFF)).thenReturn(usersFromMock);
+        List<User> expectedUsers = new ArrayList<>();
+        Mockito.when(userRepository.findAllByStatus(UserStatus.STAFF)).thenReturn(expectedUsers);
 
-        List<User> users = userService.getAllByStatus(UserStatus.STAFF);
+        List<User> actualUsers = userService.getAllByStatus(UserStatus.STAFF);
 
-        assertEquals(users, usersFromMock);
+        assertEquals(expectedUsers, actualUsers);
     }
 
     @Test
