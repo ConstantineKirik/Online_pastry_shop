@@ -35,9 +35,9 @@ public class CategoryServiceImplTest {
     @Test
     public void getByTitleTest() {
         Category categoryFromMock = new Category();
-        Mockito.when(categoryRepositoryMock.findByTitle("Эклеры")).thenReturn(categoryFromMock);
+        Mockito.when(categoryRepositoryMock.findByTitle("Test")).thenReturn(categoryFromMock);
 
-        Category category = categoryService.getByTitle("Эклеры");
+        Category category = categoryService.getByTitle("Test");
 
         assertEquals(category, categoryFromMock);
     }
