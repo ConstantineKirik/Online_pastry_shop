@@ -3,22 +3,24 @@ package com.academy.kirik.online_pastry_shop.service;
 import com.academy.kirik.online_pastry_shop.dto.DeliveryAddressDTO;
 import com.academy.kirik.online_pastry_shop.model.entity.DeliveryAddress;
 import com.academy.kirik.online_pastry_shop.model.repository.DeliveryAddressRepository;
+import com.academy.kirik.online_pastry_shop.service.impl.DeliveryAddressServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
 public class DeliveryAddressImplTest {
 
-    @Autowired
-    DeliveryAddressService deliveryAddressService;
+    private DeliveryAddressService deliveryAddressService;
+    private DeliveryAddressRepository deliveryAddressRepository;
 
-    @MockBean
-    DeliveryAddressRepository deliveryAddressRepository;
+    @BeforeEach
+    void setUp() {
+        deliveryAddressRepository = Mockito.mock(DeliveryAddressRepository.class);
+
+        deliveryAddressService = new DeliveryAddressServiceImpl(deliveryAddressRepository);
+    }
 
     @Test
     public void getIdDeliveryAddressTest() {

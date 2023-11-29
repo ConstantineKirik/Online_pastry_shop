@@ -2,26 +2,32 @@ package com.academy.kirik.online_pastry_shop.service;
 
 import com.academy.kirik.online_pastry_shop.enums.OrderStatus;
 import com.academy.kirik.online_pastry_shop.model.entity.Order;
+import com.academy.kirik.online_pastry_shop.model.repository.DeliveryAddressRepository;
 import com.academy.kirik.online_pastry_shop.model.repository.OrderRepository;
+import com.academy.kirik.online_pastry_shop.model.repository.UserRepository;
+import com.academy.kirik.online_pastry_shop.service.impl.OrderServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
 public class OrderServiceImplTest {
 
-    @Autowired
-    OrderService orderService;
+    private OrderService orderService;
+    private OrderRepository orderRepository;
 
-    @MockBean
-    OrderRepository orderRepository;
+    @BeforeEach
+    void setUp() {
+        UserRepository userRepository = Mockito.mock(UserRepository.class);
+        DeliveryAddressRepository deliveryAddressRepository = Mockito.mock(DeliveryAddressRepository.class);
+        orderRepository = Mockito.mock(OrderRepository.class);
+
+        orderService = new OrderServiceImpl(userRepository, deliveryAddressRepository, orderRepository);
+    }
 
     @Test
     public void getByIdTest() {

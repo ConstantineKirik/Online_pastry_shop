@@ -2,25 +2,27 @@ package com.academy.kirik.online_pastry_shop.service;
 
 import com.academy.kirik.online_pastry_shop.model.entity.Category;
 import com.academy.kirik.online_pastry_shop.model.repository.CategoryRepository;
+import com.academy.kirik.online_pastry_shop.service.impl.CategoryServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
 public class CategoryServiceImplTest {
 
-    @Autowired
-    CategoryService categoryService;
+    private CategoryService categoryService;
+    private CategoryRepository categoryRepository;
 
-    @MockBean
-    CategoryRepository categoryRepository;
+    @BeforeEach
+    void setUp() {
+        categoryRepository = Mockito.mock(CategoryRepository.class);
+
+        categoryService = new CategoryServiceImpl(categoryRepository);
+    }
 
     @Test
     public void getAllTest() {

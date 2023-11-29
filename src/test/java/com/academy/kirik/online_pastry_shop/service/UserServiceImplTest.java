@@ -5,11 +5,10 @@ import com.academy.kirik.online_pastry_shop.enums.Role;
 import com.academy.kirik.online_pastry_shop.enums.UserStatus;
 import com.academy.kirik.online_pastry_shop.model.entity.User;
 import com.academy.kirik.online_pastry_shop.model.repository.UserRepository;
+import com.academy.kirik.online_pastry_shop.service.impl.UserServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -18,17 +17,19 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
 public class UserServiceImplTest {
 
-    @Autowired
-    UserService userService;
+    private UserService userService;
+    private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
 
-    @MockBean
-    UserRepository userRepository;
+    @BeforeEach
+    void setUp() {
+        passwordEncoder = Mockito.mock(PasswordEncoder.class);
+        userRepository = Mockito.mock(UserRepository.class);
 
-    @MockBean
-    PasswordEncoder passwordEncoder;
+        userService = new UserServiceImpl(userRepository, passwordEncoder);
+    }
 
     @Test
     public void getByIdTest() {

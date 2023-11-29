@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class DeliveryAddressImpl implements DeliveryAddressService {
+public class DeliveryAddressServiceImpl implements DeliveryAddressService {
 
     private final DeliveryAddressRepository deliveryAddressRepository;
 

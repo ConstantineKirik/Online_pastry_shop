@@ -2,12 +2,12 @@ package com.academy.kirik.online_pastry_shop.service;
 
 import com.academy.kirik.online_pastry_shop.dto.ProductDTO;
 import com.academy.kirik.online_pastry_shop.model.entity.Product;
+import com.academy.kirik.online_pastry_shop.model.repository.CategoryRepository;
 import com.academy.kirik.online_pastry_shop.model.repository.ProductRepository;
+import com.academy.kirik.online_pastry_shop.service.impl.ProductServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +15,20 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
 public class ProductServiceImplTest {
 
-    @Autowired
-    ProductService productService;
+    private ProductService productService;
+    private ProductRepository productRepository;
 
-    @MockBean
-    ProductRepository productRepository;
+    @BeforeEach
+    void setUp() {
+        productRepository = Mockito.mock(ProductRepository.class);
+        CategoryRepository categoryRepository = Mockito.mock(CategoryRepository.class);
+        UserService userService = Mockito.mock(UserService.class);
+        BucketService bucketService = Mockito.mock(BucketService.class);
+
+        productService = new ProductServiceImpl(productRepository, categoryRepository, userService, bucketService);
+    }
 
     @Test
     public void getByIdTest() {
