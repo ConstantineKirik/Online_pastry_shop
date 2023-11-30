@@ -18,8 +18,6 @@ public interface UserService extends UserDetailsService {
 
     User getByUsername(String username);
 
-    List<User> getAllByStatus(UserStatus status);
-
     void updateUserRole(Integer id, Role role);
 
     void updateUserStatus(Integer id, UserStatus status);
@@ -27,4 +25,6 @@ public interface UserService extends UserDetailsService {
     boolean checkMobileNumber(Long mobileNumber);
 
     boolean checkEmail(String email);
+
+    List<User> searchUsers(UserDTO userDTO);
 }

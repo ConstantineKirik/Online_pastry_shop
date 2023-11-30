@@ -26,15 +26,16 @@ public class AdminController {
     private final CategoryService categoryService;
     private final ProductService productService;
 
-    @GetMapping(value = "/userManagement")
-    public String userManagement() {
+    @GetMapping("/userManagement")
+    public String userManagement(Model model) {
+        model.addAttribute("search", new UserDTO());
         return "userManagement";
     }
 
-    @GetMapping(value = "/showAllUsers")
-    public String showAllUsers(@RequestParam String status, Model model) {
+    @PostMapping(value = "/search")
+    public String search(@ModelAttribute("search") UserDTO userDTO, Model model) {
 
-        List<User> users = userService.getAllByStatus(UserStatus.valueOf(status));
+        List<User> users = userService.searchUsers(userDTO);
         model.addAttribute("users", users);
 
         return "userManagement";
@@ -53,14 +54,14 @@ public class AdminController {
     @PostMapping(value = "/statusUp")
     public String statusUp(@ModelAttribute("change") UserDTO userDTO, @RequestParam Integer id) {
         userService.updateUserStatus(id, UserStatus.valueOf(userDTO.getStatus()));
-        return "userManagement";
+        return "redirect:/admin/userManagement";
     }
 
     @PostMapping(value = "/assignRole")
     public String assignRole(@ModelAttribute("change") UserDTO userDTO, @RequestParam Integer id) {
 
         userService.updateUserRole(id, Role.valueOf(userDTO.getRole()));
-        return "userManagement";
+        return "redirect:/admin/userManagement";
     }
 
     @GetMapping(value = "/productManagement")

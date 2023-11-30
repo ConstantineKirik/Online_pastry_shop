@@ -62,11 +62,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllByStatus(UserStatus status) {
-        return userRepository.findAllByStatus(status);
-    }
-
-    @Override
     public void updateUserRole(Integer id, Role role) {
         User user = userRepository.getReferenceById(id);
         user.setRole(role);
@@ -81,6 +76,11 @@ public class UserServiceImpl implements UserService {
 
         if (status.equals(UserStatus.BLACKLIST)) {
             user.setAccountNonLocked(false);
+            user.setOrders(new ArrayList<>());
+        }
+
+        if (status.equals(UserStatus.NEW)) {
+            user.setAccountNonLocked(true);
         }
 
         userRepository.save(user);
@@ -109,5 +109,15 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByEmail(email);
 
         return user != null;
+    }
+
+    @Override
+    public List<User> searchUsers(UserDTO userDTO) {
+        return userRepository.searchUsers(
+                userDTO.getUsername(),
+                userDTO.getMobileNumber(),
+                userDTO.getEmail(),
+                userDTO.getStatus()
+        );
     }
 }

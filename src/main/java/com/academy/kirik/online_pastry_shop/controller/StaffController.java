@@ -20,16 +20,21 @@ public class StaffController {
     private final OrderService orderService;
 
     @GetMapping(value = "/orderManagement")
-    public String orderManagement() {
-        return "orderManagement";
-    }
-
-    @GetMapping(value = "/showNewOrders")
-    public String showNewOrders(Model model) {
-
+    public String orderManagement(Model model) {
         List<Order> newOrders = orderService.getByStatus(OrderStatus.NEW);
         model.addAttribute("newOrders", newOrders);
 
+        List<Order> acceptOrders = orderService.getByStatus(OrderStatus.ACCEPTED);
+        model.addAttribute("acceptOrders", acceptOrders);
+
+        List<Order> formedOrders = orderService.getByStatus(OrderStatus.FORMED);
+        model.addAttribute("formedOrders", formedOrders);
+
+        List<Order> sentOrders = orderService.getByStatus(OrderStatus.SENT);
+        model.addAttribute("sentOrders", sentOrders);
+
+        List<Order> deliveredOrders = orderService.getByStatus(OrderStatus.DELIVERED);
+        model.addAttribute("deliveredOrders", deliveredOrders);
         return "orderManagement";
     }
 
@@ -38,16 +43,7 @@ public class StaffController {
 
         orderService.updateStatusOrder(id, OrderStatus.ACCEPTED);
 
-        return "redirect:/staff/showNewOrders";
-    }
-
-    @GetMapping(value = "/showAcceptOrders")
-    public String showAcceptOrders(Model model) {
-
-        List<Order> acceptOrders = orderService.getByStatus(OrderStatus.ACCEPTED);
-        model.addAttribute("acceptOrders", acceptOrders);
-
-        return "orderManagement";
+        return "redirect:/staff/orderManagement";
     }
 
     @GetMapping(value = "/formedOrder")
@@ -55,16 +51,7 @@ public class StaffController {
 
         orderService.updateStatusOrder(id, OrderStatus.FORMED);
 
-        return "redirect:/staff/showAcceptOrders";
-    }
-
-    @GetMapping(value = "/showFormedOrders")
-    public String showFormedOrders(Model model) {
-
-        List<Order> formedOrders = orderService.getByStatus(OrderStatus.FORMED);
-        model.addAttribute("formedOrders", formedOrders);
-
-        return "orderManagement";
+        return "redirect:/staff/orderManagement";
     }
 
     @GetMapping(value = "/sentOrder")
@@ -72,16 +59,7 @@ public class StaffController {
 
         orderService.updateStatusOrder(id, OrderStatus.SENT);
 
-        return "redirect:/staff/showFormedOrders";
-    }
-
-    @GetMapping(value = "/showSentOrders")
-    public String showSentOrders(Model model) {
-
-        List<Order> sentOrders = orderService.getByStatus(OrderStatus.SENT);
-        model.addAttribute("sentOrders", sentOrders);
-
-        return "orderManagement";
+        return "redirect:/staff/orderManagement";
     }
 
     @GetMapping(value = "/deliveredOrder")
@@ -89,16 +67,7 @@ public class StaffController {
 
         orderService.updateStatusOrder(id, OrderStatus.DELIVERED);
 
-        return "redirect:/staff/showSentOrders";
-    }
-
-    @GetMapping(value = "/showDeliveredOrders")
-    public String showDeliveredOrders(Model model) {
-
-        List<Order> deliveredOrders = orderService.getByStatus(OrderStatus.DELIVERED);
-        model.addAttribute("deliveredOrders", deliveredOrders);
-
-        return "orderManagement";
+        return "redirect:/staff/orderManagement";
     }
 
     @GetMapping(value = "/closeOrder")
@@ -106,6 +75,6 @@ public class StaffController {
 
         orderService.updateStatusOrder(id, OrderStatus.CLOSED);
 
-        return "redirect:/staff/showDeliveredOrders";
+        return "redirect:/staff/orderManagement";
     }
 }

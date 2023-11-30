@@ -54,11 +54,12 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void getAllByStatusTest() {
+    public void searchUsersTest() {
+        UserDTO userDTO = UserDTO.builder().build();
         List<User> expectedUsers = new ArrayList<>();
-        Mockito.when(userRepository.findAllByStatus(UserStatus.STAFF)).thenReturn(expectedUsers);
+        Mockito.when(userRepository.searchUsers(Mockito.anyString(), Mockito.anyLong(), Mockito.anyString(), Mockito.anyString())).thenReturn(expectedUsers);
 
-        List<User> actualUsers = userService.getAllByStatus(UserStatus.STAFF);
+        List<User> actualUsers = userService.searchUsers(userDTO);
 
         assertEquals(expectedUsers, actualUsers);
     }
@@ -192,5 +193,15 @@ public class UserServiceImplTest {
         userService.updateUserStatus(1, UserStatus.BLACKLIST);
 
         assertEquals(UserStatus.BLACKLIST, user.getStatus());
+    }
+
+    @Test
+    public void removeFromBlackList() {
+        User user = User.builder().id(1).status(UserStatus.BLACKLIST).build();
+        Mockito.when(userRepository.getReferenceById(Mockito.anyInt())).thenReturn(user);
+
+        userService.updateUserStatus(1, UserStatus.NEW);
+
+        assertEquals(UserStatus.NEW, user.getStatus());
     }
 }

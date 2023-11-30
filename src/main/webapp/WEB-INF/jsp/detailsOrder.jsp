@@ -24,7 +24,7 @@
     Aдрес доставки: ул.${order.deliveryAddresses.street} д.${order.deliveryAddresses.house}
     кв.${order.deliveryAddresses.apartment}
     <br>
-    Статус: ${order.status}
+    Статус: ${order.status.title}
 </div>
 
 <%@include file="common/footer.jsp" %>

@@ -2,19 +2,38 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <div class="user-management">
+    <div class="search">
+        <c:url value="/admin/search" var="search"/>
+        <sf:form method="post" action="${search}" modelAttribute="search">
+            <h3>Поиск пользователей</h3>
 
-    <a href="<c:url value="/admin/showAllUsers?status=STAFF"/>">Staff</a>
-    <a href="<c:url value="/admin/showAllUsers?status=NEW"/>">New</a>
-    <a href="<c:url value="/admin/showAllUsers?status=SILVER"/>">Silver</a>
-    <a href="<c:url value="/admin/showAllUsers?status=GOLD"/>">Gold</a>
-    <a href="<c:url value="/admin/showAllUsers?status=PLATINUM"/>">Platinum</a>
-    <a href="<c:url value="/admin/showAllUsers?status=BLACKLIST"/>">Black List</a>
-    <br>
-    <br>
-    <c:forEach items="${users}" var="user">
-        <a href="<c:url value="/admin/showUserDetails?id=${user.id}"/>">${user.username}</a>
-        Кол-во заказов: ${fn:length(user.orders)} <br>
-    </c:forEach>
+            <sf:input type="text" path="username" placeholder="Имя пользователя"></sf:input>
+
+            <sf:input type="text" path="mobileNumber" placeholder="Номер мобильного"></sf:input>
+
+            <sf:input type="text" path="email" placeholder="Электронная почта"></sf:input>
+
+            <sf:input type="text" path="status" placeholder="Статус"></sf:input>
+
+            <input type="submit" value="Найти">
+
+        </sf:form>
+    </div>
+
+    <table class="user-table">
+        <tr>
+            <th>Имя пользователя </th>
+            <th> Статус </th>
+            <th> Кол-во заказов</th>
+        </tr>
+        <c:forEach items="${users}" var="user">
+            <tr>
+                <td><a href="<c:url value="/admin/showUserDetails?id=${user.id}"/>">${user.username}</a></td>
+                <td> ${user.status} </td>
+                <td>${fn:length(user.orders)}</td>
+            </tr>
+        </c:forEach>
+    </table>
 </div>
 
 <%@include file="common/footer.jsp" %>

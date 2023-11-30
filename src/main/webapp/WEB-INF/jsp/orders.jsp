@@ -22,8 +22,8 @@
 
                 <tr>
                     <td>${order.id}</td>
-                    <td>${order.status}</td>
-                    <td><a href="<c:url value="/users/detailsOrder?id=${order.id}"/>">Посмотреть детали заказа</a></td>
+                    <td> | ${order.status.title}</td>
+                    <td> | <a href="<c:url value="/users/detailsOrder?id=${order.id}"/>">Посмотреть детали заказа</a></td>
                 </tr>
 
             </c:forEach>

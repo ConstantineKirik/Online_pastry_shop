@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DeliveryAddressImplTest {
+public class DeliveryAddressServiceImplTest {
 
     private DeliveryAddressService deliveryAddressService;
     private DeliveryAddressRepository deliveryAddressRepository;
